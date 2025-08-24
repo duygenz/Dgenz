@@ -1,0 +1,2018 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-family:"Arial",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='border:none'><span style='font-family:Courier'>&lt;!DOCTYPE
+html&gt;<br>
+&lt;html lang=&quot;vi&quot;&gt;<br>
+&lt;head&gt;<br>
+  &lt;meta charset=&quot;UTF-8&quot;&gt;<br>
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+initial-scale=1.0&quot;&gt;<br>
+  &lt;title&gt;Cosmic Quiz - Galactic Adventure 6.2&lt;/title&gt;<br>
+  &lt;!-- Google Fonts: Exo 2 --&gt;<br>
+  &lt;link rel=&quot;preconnect&quot;
+href=&quot;https://fonts.googleapis.com&quot;&gt;<br>
+  &lt;link rel=&quot;preconnect&quot;
+href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;<br>
+  &lt;link
+href=&quot;https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&amp;display=swap&quot;
+rel=&quot;stylesheet&quot;&gt;<br>
+  &lt;!-- CodeMirror Library --&gt;<br>
+  &lt;link rel=&quot;stylesheet&quot;
+href=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css&quot;&gt;<br>
+  &lt;link rel=&quot;stylesheet&quot;
+href=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/dracula.min.css&quot;&gt;<br>
+  &lt;!-- Font Awesome for Icons --&gt;<br>
+  &lt;link rel=&quot;stylesheet&quot;
+href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css&quot;&gt;<br>
+  &lt;!-- Defer non-critical scripts --&gt;<br>
+  &lt;script
+src=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js&quot;
+defer&gt;&lt;/script&gt;<br>
+  &lt;script
+src=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js&quot;
+defer&gt;&lt;/script&gt;<br>
+  &lt;script
+src=&quot;https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js&quot;
+defer&gt;&lt;/script&gt;<br>
+  &lt;style&gt;<br>
+      /* --- PERFORMANCE-OPTIMIZED COSMIC THEME (SUPERNOVA) --- */<br>
+      :root {<br>
+          --primary-glow: #00aaff;<br>
+          --secondary-glow: #ff00ff;<br>
+          --success-glow: #00ffaa;<br>
+          --danger-glow: #ff4d4d;<br>
+          --warning-glow: #ffee00;<br>
+          --text-light: #e0e0e0;<br>
+          --text-dark: #ffffff;<br>
+          --bg-deep-space: #000010;<br>
+          --bg-nebula-start: #1a0033;<br>
+          --bg-nebula-end: #001a33;<br>
+          --glass-bg: rgba(10, 10, 30, 0.75);<br>
+          --glass-border: rgba(255, 255, 255, 0.2);<br>
+          --shadow-color: rgba(0, 170, 255, 0.3);<br>
+      }<br>
+      * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Exo 2',
+sans-serif; }<br>
+      html { scroll-behavior: smooth; }<br>
+      body {<br>
+          background-color: var(--bg-deep-space);<br>
+          background-image:<br>
+              radial-gradient(circle at 20% 20%, var(--bg-nebula-start) 0%,
+transparent 40%),<br>
+              radial-gradient(circle at 80% 70%, var(--bg-nebula-end) 0%,
+transparent 40%);<br>
+          min-height: 100vh; padding: 20px; display: flex; justify-content:
+center; align-items: center;<br>
+          color: var(--text-light); position: relative; overflow: hidden;<br>
+      }<br>
+      #stars-canvas { position: fixed; top: 0; left: 0; width: 100%; height:
+100%; z-index: -1; }<br>
+      .container {<br>
+          width: 100%; max-width: 900px; background: var(--glass-bg);
+border-radius: 20px;<br>
+          box-shadow: 0 0 30px var(--shadow-color); border: 1px solid
+var(--glass-border);<br>
+          backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);<br>
+          z-index: 1; overflow: hidden; animation: float 6s ease-in-out
+infinite;<br>
+          display: flex; flex-direction: column; max-height: 95vh;<br>
+      }<br>
+      @keyframes float { 0% { transform: translateY(0px); } 50% { transform:
+translateY(-10px); } 100% { transform: translateY(0px); } }<br>
+      .header { padding: 20px 25px; text-align: center; border-bottom: 1px
+solid var(--glass-border); flex-shrink: 0; }<br>
+      .header h1 { font-size: 2.2em; font-weight: 700; background: linear-gradient(45deg,
+var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text;
+-webkit-text-fill-color: transparent; text-shadow: 0 0 10px rgba(255, 0, 255,
+0.3); }<br>
+      .header p { color: var(--text-light); font-size: 1em; opacity: 0.8; margin-top:
+5px; }<br>
+      .user-profile-header {<br>
+          margin-top: 15px;<br>
+          background: rgba(0,0,0,0.2);<br>
+          padding: 8px;<br>
+          border-radius: 10px;<br>
+          font-size: 0.9em;<br>
+      }<br>
+      .user-profile-header .rank { font-weight: 600; color:
+var(--warning-glow); }<br>
+      .xp-bar { width: 100%; height: 8px; background-color: rgba(0,0,0,0.3);
+border-radius: 5px; overflow: hidden; border: 1px solid var(--glass-border);
+margin-top: 5px; }<br>
+      .xp-bar-inner { height: 100%; width: 0%; background:
+linear-gradient(90deg, var(--primary-glow), var(--success-glow)); transition:
+width 0.5s ease; }<br>
+<br>
+      .tabs { display: flex; background: rgba(0,0,0,0.2); flex-shrink: 0; }<br>
+      .tab { flex: 1; padding: 15px 10px; background: transparent; border:
+none; cursor: pointer; font-size: 1em; font-weight: 600; transition: all 0.3s
+ease; border-bottom: 3px solid transparent; color: var(--text-light); }<br>
+      .tab.active { background: var(--glass-bg); border-bottom-color:
+var(--primary-glow); color: var(--primary-glow); text-shadow: 0 0 5px
+var(--primary-glow); }<br>
+      .tab:hover:not(.active) { background: rgba(255,255,255,0.1); }<br>
+      .tab-content { display: none; padding: 25px; animation: fadeIn 0.4s
+ease-in-out; overflow-y: auto; flex-grow: 1; }<br>
+      .tab-content.active { display: flex; flex-direction: column; }<br>
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to
+{ opacity: 1; transform: translateY(0); } }<br>
+      .tab-content::-webkit-scrollbar { width: 8px; }<br>
+      .tab-content::-webkit-scrollbar-track { background: transparent; }<br>
+      .tab-content::-webkit-scrollbar-thumb { background-color:
+var(--primary-glow); border-radius: 10px; }<br>
+      <br>
+      label { display: block; margin-bottom: 10px; font-weight: 600; color:
+var(--text-dark); }<br>
+      input[type=&quot;text&quot;], input[type=&quot;number&quot;],
+input[type=&quot;search&quot;], textarea, select { width: 100%; padding: 10px;
+background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);
+border-radius: 8px; color: var(--text-light); font-size: 1em; }<br>
+      textarea { resize: vertical; }<br>
+      .CodeMirror { border: 1px solid var(--glass-border); border-radius: 8px;
+height: auto; font-size: 14px; background: rgba(0,0,0,0.3); flex-grow: 1; }<br>
+      #editor-wrapper { display: flex; flex-direction: column; flex-grow: 1;
+position: relative; }<br>
+      #drag-drop-overlay { position: absolute; top: 0; left: 0; width: 100%;
+height: 100%; background: rgba(0, 170, 255, 0.2); border: 3px dashed
+var(--primary-glow); border-radius: 8px; display: none; justify-content:
+center; align-items: center; font-size: 1.5em; font-weight: bold; color:
+var(--primary-glow); pointer-events: none; }<br>
+      .button-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top:
+20px; justify-content: center; }<br>
+      .button { background: transparent; color: var(--text-light); padding:
+12px 25px; border: 2px solid var(--primary-glow); border-radius: 8px; cursor:
+pointer; font-size: 1em; font-weight: 600; transition: all 0.2s ease;
+text-shadow: 0 0 5px var(--primary-glow); box-shadow: 0 0 10px
+var(--primary-glow) inset, 0 0 5px var(--primary-glow); display: inline-flex;
+align-items: center; gap: 8px; }<br>
+      .button:hover { background: var(--primary-glow); color:
+var(--bg-deep-space); text-shadow: none; box-shadow: 0 0 20px var(--primary-glow);
+transform: translateY(-2px); }<br>
+      .button:active { transform: translateY(0); }<br>
+      .button.secondary { border-color: var(--secondary-glow); text-shadow: 0 0
+5px var(--secondary-glow); box-shadow: 0 0 10px var(--secondary-glow) inset, 0
+0 5px var(--secondary-glow); }<br>
+      .button.secondary:hover { background: var(--secondary-glow); box-shadow:
+0 0 20px var(--secondary-glow); }<br>
+      .button.danger { border-color: var(--danger-glow); text-shadow: 0 0 5px
+var(--danger-glow); box-shadow: 0 0 10px var(--danger-glow) inset, 0 0 5px
+var(--danger-glow); }<br>
+      .button.danger:hover { background: var(--danger-glow); box-shadow: 0 0
+20px var(--danger-glow); }<br>
+      .button.warning { border-color: var(--warning-glow); text-shadow: 0 0 5px
+var(--warning-glow); box-shadow: 0 0 10px var(--warning-glow) inset, 0 0 5px
+var(--warning-glow); }<br>
+      .button.warning:hover { background: var(--warning-glow); box-shadow: 0 0
+20px var(--warning-glow); color: var(--bg-deep-space); }<br>
+      .button:disabled { cursor: not-allowed; opacity: 0.5; transform: none;
+box-shadow: none; }<br>
+      .status-message { padding: 10px; border-radius: 5px; margin-top: 15px;
+text-align: center; opacity: 1; transition: opacity 0.3s; }<br>
+      .status-message.success { background-color: rgba(0, 255, 170, 0.2);
+border: 1px solid var(--success-glow); color: var(--success-glow); }<br>
+      .status-message.error { background-color: rgba(255, 77, 77, 0.2); border:
+1px solid var(--danger-glow); color: var(--danger-glow); }<br>
+      .status-message.info { background-color: rgba(0, 170, 255, 0.2); border:
+1px solid var(--primary-glow); color: var(--primary-glow); }<br>
+      .loader { width: 48px; height: 48px; border: 4px solid
+var(--primary-glow); border-bottom-color: transparent; border-radius: 50%;
+display: inline-block; box-sizing: border-box; animation: rotation 1s linear
+infinite; }<br>
+      @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform:
+rotate(360deg); } }<br>
+      #quiz.tab-content.active { padding: 0; }<br>
+      .quiz-header { text-align: center; padding: 20px; flex-shrink: 0;
+border-bottom: 1px solid var(--glass-border); background: rgba(10, 10, 30,
+0.85); }<br>
+      #questions-list-container { overflow-y: auto; flex-grow: 1; padding:
+20px; }<br>
+      .quiz-button-container { padding: 20px; border-top: 1px solid
+var(--glass-border); flex-shrink: 0; }<br>
+      .progress-bar { width: 100%; height: 10px; background-color:
+rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; border: 1px solid
+var(--glass-border); margin-top: 10px; }<br>
+      .progress-bar-inner { height: 100%; width: 0%; background:
+linear-gradient(90deg, var(--primary-glow), var(--secondary-glow)); transition:
+width 0.4s ease; }<br>
+      .question-card { background: var(--glass-bg); border-radius: 12px;
+padding: 25px; margin-bottom: 20px; border: 1px solid var(--glass-border);
+animation: fadeInUp 0.5s ease-out forwards; opacity: 0; transition: opacity
+0.3s; }<br>
+      .question-card.answered { opacity: 0.7; pointer-events: none; }<br>
+      .question-card.answered .options { pointer-events: none; }<br>
+      /* FIX: Re-enable pointer events for the navigation/submit button inside
+an answered card */<br>
+      .question-card.answered .sq-card-nav {<br>
+          pointer-events: auto;<br>
+      }<br>
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); } }<br>
+      .question-image { max-width: 100%; border-radius: 8px; margin-bottom:
+15px; border: 1px solid var(--glass-border); }<br>
+      .option label { display: flex; align-items: center; padding: 15px;
+background: rgba(0,0,0,0.2); border: 2px solid var(--glass-border);
+border-radius: 8px; cursor: pointer; transition: all 0.2s ease; margin-bottom:
+10px; }<br>
+      .option label:hover { border-color: var(--primary-glow); background:
+var(--glass-bg); }<br>
+      .option input { display: none; }<br>
+      .option input:checked + label { border-color: var(--primary-glow);
+background: var(--glass-bg); font-weight: 600; color: var(--primary-glow); }<br>
+      .option label.instant-correct { border-color: var(--success-glow)
+!important; background: rgba(0, 255, 170, 0.2) !important; color:
+var(--success-glow) !important; }<br>
+      .option label.instant-incorrect { border-color: var(--danger-glow)
+!important; background: rgba(255, 77, 77, 0.2) !important; color:
+var(--danger-glow) !important; }<br>
+      .instant-explanation { display: none; background: rgba(255, 238, 0, 0.1);
+border: 1px solid var(--warning-glow); color: var(--warning-glow); padding:
+10px; border-radius: 5px; margin-top: 10px; }<br>
+      #single-question-view { display: flex; flex-direction: column; height:
+100%; }<br>
+      #sq-question-container { flex-grow: 1; overflow-y: auto; padding: 20px; }<br>
+      #sq-navigation { display: flex; justify-content: space-between;
+align-items: center; padding: 15px 20px; border-top: 1px solid var(--glass-border);
+flex-shrink: 0; }<br>
+      #sq-nav-dots { display: flex; flex-wrap: wrap; gap: 8px; justify-content:
+center; }<br>
+      .nav-dot { width: 25px; height: 25px; border-radius: 50%; background:
+rgba(0,0,0,0.3); border: 1px solid var(--glass-border); cursor: pointer;
+transition: all 0.2s ease; display: flex; justify-content: center; align-items:
+center; font-size: 0.8em; }<br>
+      .nav-dot:hover { background: var(--glass-bg); border-color:
+var(--primary-glow); }<br>
+      .nav-dot.current { background: var(--primary-glow); color:
+var(--bg-deep-space); border-color: var(--primary-glow); font-weight: bold; }<br>
+      .nav-dot.answered { background: rgba(0, 255, 170, 0.2); border-color:
+var(--success-glow); }<br>
+      .sq-card-nav { margin-top: 25px; text-align: center; }<br>
+      .creator-section { background: rgba(0,0,0,0.2); padding: 20px;
+border-radius: 12px; margin-bottom: 25px; border: 1px solid
+var(--glass-border); }<br>
+      .creator-section h3 { margin-bottom: 15px; color: var(--primary-glow);
+border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }<br>
+      .creator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}<br>
+      .creator-question { background: rgba(0,0,0,0.2); padding: 15px;
+border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--glass-border);
+}<br>
+      .creator-option { display: flex; gap: 10px; align-items: center;
+margin-bottom: 10px; }<br>
+      .creator-option input[type=&quot;text&quot;] { flex-grow: 1; }<br>
+      .creator-option input[type=&quot;radio&quot;], .creator-option
+input[type=&quot;checkbox&quot;] { flex-shrink: 0; width: 20px; height: 20px;
+cursor: pointer; }<br>
+      .creator-option .button.danger { padding: 5px 10px; font-size: 0.8em; }<br>
+      .form-group { margin-bottom: 20px; }<br>
+      .form-group.inline { display: flex; align-items: center; gap: 15px; }<br>
+      .form-group.inline label { margin-bottom: 0; }<br>
+      .form-group.inline input[type=&quot;checkbox&quot;] { width: 20px;
+height: 20px; }<br>
+      .form-group.inline label[disabled] { opacity: 0.5; cursor: not-allowed; }<br>
+      .history-item { display: flex; justify-content: space-between;
+align-items: center; padding: 15px; background: rgba(0,0,0,0.2); border-radius:
+8px; margin-bottom: 10px; border-left: 4px solid var(--primary-glow); }<br>
+      .history-info h4 { margin: 0; color: var(--text-dark); }<br>
+      .history-info p { margin: 5px 0 0; font-size: 0.9em; opacity: 0.7; }<br>
+      .history-score { font-size: 1.2em; font-weight: 600; color:
+var(--primary-glow); }<br>
+      .review-filters { margin-bottom: 20px; }<br>
+      .review-filters .button { border-width: 1px; box-shadow: none; }<br>
+      .review-filters .button.active { background: var(--primary-glow); color:
+var(--bg-deep-space); text-shadow: none; }<br>
+      .review-question.hidden { display: none; }<br>
+      .modal-overlay, #pause-overlay { position: fixed; top: 0; left: 0; width:
+100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+z-index: 1000; display: none; justify-content: center; align-items: center;
+animation: fadeIn 0.3s; }<br>
+      .modal-content { background: var(--glass-bg); padding: 30px;
+border-radius: 15px; border: 1px solid var(--glass-border); box-shadow: 0 0
+25px rgba(0,0,0,0.5); width: 90%; max-width: 600px; text-align: center;
+animation: float 0.3s ease-out; }<br>
+      .modal-content h2 { margin-bottom: 15px; color: var(--primary-glow); }<br>
+      .modal-content p { margin-bottom: 25px; }<br>
+      #pause-overlay h2 { font-size: 3em; color: var(--warning-glow);
+text-shadow: 0 0 15px var(--warning-glow); }<br>
+      #quiz-library-list { max-height: 300px; overflow-y: auto; margin-top:
+20px; text-align: left; }<br>
+      .quiz-library-item { display: flex; justify-content: space-between;
+align-items: center; padding: 10px; border-radius: 6px; margin-bottom: 8px;
+background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); }<br>
+      .quiz-library-item:hover { background: rgba(0,0,0,0.4); }<br>
+      .achievement-grid { display: grid; grid-template-columns:
+repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }<br>
+      .achievement-card { background: rgba(0,0,0,0.2); border: 1px solid
+var(--glass-border); border-radius: 12px; padding: 20px; text-align: center;
+transition: all 0.3s ease; }<br>
+      .achievement-card.unlocked { border-color: var(--warning-glow);
+box-shadow: 0 0 10px var(--warning-glow); }<br>
+      .achievement-card.locked { opacity: 0.4; filter: grayscale(80%); }<br>
+      .achievement-card i { font-size: 2.5em; margin-bottom: 10px; color:
+var(--warning-glow); }<br>
+      .achievement-card h4 { font-size: 1em; margin-bottom: 5px; color:
+var(--text-dark); }<br>
+      .achievement-card p { font-size: 0.8em; opacity: 0.7; }<br>
+      .notifier { position: fixed; top: 20%; left: 50%; transform:
+translateX(-50%) translateY(20px); z-index: 9999; pointer-events: none;
+opacity: 0; transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }<br>
+      .notifier.show { opacity: 1; transform: translateX(-50%) translateY(0); }<br>
+      .streak-notifier-content { font-size: 2.5em; font-weight: 700; color:
+var(--warning-glow); text-shadow: 0 0 15px var(--warning-glow), 0 0 25px
+var(--warning-glow); animation: pulse 1s infinite; }<br>
+      @keyframes pulse { 0% { transform: scale(1); } 50% { transform:
+scale(1.1); } 100% { transform: scale(1); } }<br>
+      .achievement-notifier-content { background: var(--glass-bg); border: 1px
+solid var(--warning-glow); border-radius: 12px; padding: 20px; display: flex;
+align-items: center; gap: 15px; box-shadow: 0 0 20px var(--warning-glow); }<br>
+      .achievement-notifier-content i { font-size: 2em; color:
+var(--warning-glow); }<br>
+      /* Styles for Matching Question Type */<br>
+      .matching-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap:
+15px; align-items: center; }<br>
+      .matching-item { display: contents; }<br>
+      .matching-item p { background: rgba(0,0,0,0.2); padding: 10px;
+border-radius: 6px; text-align: center; }<br>
+      .matching-item select { margin: 0; }<br>
+      .creator-matching-pair { display: grid; grid-template-columns: 1fr 1fr
+auto; gap: 10px; margin-bottom: 10px; align-items: center; }<br>
+<br>
+      @media (max-width: 768px) {<br>
+          body { padding: 5px; align-items: flex-start; }<br>
+          .container { animation: none; max-height: 98vh; border-radius: 10px;
+}<br>
+          .header h1 { font-size: 1.8em; }<br>
+          .tab { font-size: 0.8em; padding: 12px 5px; }<br>
+          .tab-content { padding: 15px; }<br>
+          #quiz.tab-content.active { padding: 0; }<br>
+          .button { padding: 10px 15px; font-size: 0.9em; }<br>
+          .creator-grid { grid-template-columns: 1fr; }<br>
+          .history-item { flex-direction: column; align-items: flex-start; gap:
+10px; }<br>
+          #sq-navigation { flex-direction: column; gap: 15px; }<br>
+          .matching-grid { grid-template-columns: 1fr; }<br>
+          .matching-item p { text-align: left; }<br>
+      }<br>
+  &lt;/style&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+  &lt;canvas id=&quot;stars-canvas&quot;&gt;&lt;/canvas&gt;<br>
+  &lt;div class=&quot;container&quot;&gt;<br>
+      &lt;header class=&quot;header&quot;&gt;<br>
+          &lt;h1&gt;☄️ Cosmic Quiz - Galactic Adventure&lt;/h1&gt;<br>
+          &lt;p&gt;Chinh phục vũ trụ tri thức và thăng hạng trong thiên
+hà.&lt;/p&gt;<br>
+          &lt;div class=&quot;user-profile-header&quot;&gt;<br>
+              &lt;div&gt;Hạng: &lt;span id=&quot;userRank&quot;
+class=&quot;rank&quot;&gt;&lt;/span&gt; | XP: &lt;span id=&quot;userXP&quot;&gt;&lt;/span&gt;&lt;/div&gt;<br>
+              &lt;div class=&quot;xp-bar&quot;&gt;<br>
+                  &lt;div id=&quot;xpBarInner&quot;
+class=&quot;xp-bar-inner&quot;&gt;&lt;/div&gt;<br>
+              &lt;/div&gt;<br>
+          &lt;/div&gt;<br>
+      &lt;/header&gt;<br>
+      &lt;div class=&quot;tabs&quot;&gt;<br>
+          &lt;button class=&quot;tab active&quot; onclick=&quot;showTab('creator')&quot;&gt;&lt;i
+class=&quot;fa-solid fa-hammer&quot;&gt;&lt;/i&gt; Xưởng&lt;/button&gt;<br>
+          &lt;button class=&quot;tab&quot;
+onclick=&quot;showTab('editor')&quot;&gt;&lt;i class=&quot;fa-solid
+fa-satellite-dish&quot;&gt;&lt;/i&gt; Soạn Thảo&lt;/button&gt;<br>
+          &lt;button class=&quot;tab&quot;
+onclick=&quot;showTab('quiz')&quot;&gt;&lt;i class=&quot;fa-solid
+fa-rocket&quot;&gt;&lt;/i&gt; Bệ Phóng&lt;/button&gt;<br>
+          &lt;button class=&quot;tab&quot;
+onclick=&quot;showTab('history')&quot;&gt;&lt;i class=&quot;fa-solid
+fa-book-journal-whills&quot;&gt;&lt;/i&gt; Lịch Sử&lt;/button&gt;<br>
+          &lt;button class=&quot;tab&quot;
+onclick=&quot;showTab('profile')&quot;&gt;&lt;i class=&quot;fa-solid
+fa-user-astronaut&quot;&gt;&lt;/i&gt; Hồ Sơ&lt;/button&gt;<br>
+      &lt;/div&gt;<br>
+      <br>
+      &lt;div id=&quot;creator&quot; class=&quot;tab-content active&quot;&gt;<br>
+           &lt;div id=&quot;creatorForm&quot;&gt;<br>
+               &lt;div class=&quot;creator-section&quot;&gt;<br>
+                    &lt;h3&gt;&lt;i class=&quot;fa-solid
+fa-database&quot;&gt;&lt;/i&gt; Thư Viện Đề Thi&lt;/h3&gt;<br>
+                    &lt;p style=&quot;text-align: center; opacity: 0.8;
+margin-bottom: 20px;&quot;&gt;Lưu và quản lý các bộ đề thi của bạn.&lt;/p&gt;<br>
+                    &lt;div class=&quot;button-group&quot;&gt;<br>
+                        &lt;button class=&quot;button&quot;
+onclick=&quot;saveQuizToLibrary()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-save&quot;&gt;&lt;/i&gt; Lưu Đề Hiện Tại&lt;/button&gt;<br>
+                        &lt;button class=&quot;button secondary&quot;
+onclick=&quot;showQuizLibrary()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-box-archive&quot;&gt;&lt;/i&gt; Mở Thư Viện&lt;/button&gt;<br>
+                    &lt;/div&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;creator-section&quot;&gt;<br>
+                    &lt;h3&gt;&lt;i class=&quot;fa-solid
+fa-wand-magic-sparkles&quot;&gt;&lt;/i&gt; Tạo Đề Bằng AI &#128640;&lt;/h3&gt;<br>
+                    &lt;div class=&quot;form-group&quot;&gt;<br>
+                        &lt;label for=&quot;aiTopic&quot;&gt;Nhập chủ đề
+chung&lt;/label&gt;<br>
+                        &lt;input type=&quot;text&quot; id=&quot;aiTopic&quot;
+placeholder=&quot;Ví dụ: Lịch sử Việt Nam, English literature, 日本の文化...&quot;&gt;<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class=&quot;creator-grid&quot;&gt;<br>
+                        &lt;div class=&quot;form-group&quot;&gt;<br>
+                            &lt;label for=&quot;aiNumQuestions&quot;&gt;Số lượng
+câu hỏi&lt;/label&gt;<br>
+                            &lt;input type=&quot;number&quot;
+id=&quot;aiNumQuestions&quot; value=&quot;5&quot; min=&quot;1&quot;
+max=&quot;20&quot;&gt;<br>
+                        &lt;/div&gt;<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class=&quot;button-group&quot;&gt;<br>
+                        &lt;button class=&quot;button warning&quot;
+id=&quot;aiGenerateBtn&quot; onclick=&quot;generateQuizWithAI()&quot;&gt;<br>
+                            &lt;i class=&quot;fa-solid
+fa-brain&quot;&gt;&lt;/i&gt; Tạo Câu Hỏi<br>
+                        &lt;/button&gt;<br>
+                    &lt;/div&gt;<br>
+                    &lt;div id=&quot;aiStatus&quot; style=&quot;text-align:
+center; margin-top: 15px;&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;<br>
+                    &lt;div id=&quot;aiActionsContainer&quot;
+class=&quot;button-group&quot; style=&quot;display: none; animation: fadeIn
+0.5s;&quot;&gt;<br>
+                        &lt;hr style=&quot;width: 100%; border-color:
+var(--glass-border); margin: 10px 0;&quot;&gt;<br>
+                        &lt;p style=&quot;width: 100%; text-align: center;
+opacity: 0.8;&quot;&gt;AI đã tạo xong. Bạn có thể bắt đầu ngay!&lt;/p&gt;<br>
+                        &lt;button class=&quot;button&quot; onclick=&quot;startQuizFromCreator()&quot;&gt;&lt;i
+class=&quot;fa-solid fa-play&quot;&gt;&lt;/i&gt; Bắt Đầu Ngay&lt;/button&gt;<br>
+                        &lt;button class=&quot;button secondary&quot;
+onclick=&quot;generateJsonAndSwitch()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-code&quot;&gt;&lt;/i&gt; Xem &amp; Chỉnh sửa JSON&lt;/button&gt;<br>
+                    &lt;/div&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;creator-section&quot;&gt;<br>
+                    &lt;h3&gt;&lt;i class=&quot;fa-solid
+fa-sliders&quot;&gt;&lt;/i&gt; Cài Đặt Tổng Quan&lt;/h3&gt;<br>
+                    &lt;div class=&quot;form-group&quot;&gt;<br>
+                        &lt;label for=&quot;creatorTitle&quot;&gt;Tiêu đề bài
+thi&lt;/label&gt;<br>
+                        &lt;input type=&quot;text&quot;
+id=&quot;creatorTitle&quot; placeholder=&quot;Hành Trình Khám Phá Vũ Trụ&quot;
+oninput=&quot;updateCreatorConfig('title', this.value)&quot;&gt;<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class=&quot;creator-grid&quot;&gt;<br>
+                        &lt;div class=&quot;form-group&quot;&gt;<br>
+                            &lt;label for=&quot;creatorTimeLimit&quot;&gt;Thời
+gian (giây, 0 = không giới hạn)&lt;/label&gt;<br>
+                            &lt;input type=&quot;number&quot;
+id=&quot;creatorTimeLimit&quot; value=&quot;600&quot; min=&quot;0&quot;
+oninput=&quot;updateCreatorConfig('timeLimit', this.value)&quot;&gt;<br>
+                        &lt;/div&gt;<br>
+                        &lt;div class=&quot;form-group&quot;&gt;<br>
+                             &lt;label&gt;Tùy chọn khác&lt;/label&gt;<br>
+                             &lt;div class=&quot;form-group inline&quot;&gt;<br>
+                                &lt;input type=&quot;checkbox&quot;
+id=&quot;creatorShuffleQuestions&quot; checked
+onchange=&quot;updateCreatorConfig('shuffleQuestions', this.checked)&quot;&gt;<br>
+                                &lt;label
+for=&quot;creatorShuffleQuestions&quot;&gt;Xáo trộn câu hỏi&lt;/label&gt;<br>
+                             &lt;/div&gt;<br>
+                             &lt;div class=&quot;form-group inline&quot;&gt;<br>
+                                &lt;input type=&quot;checkbox&quot;
+id=&quot;creatorShuffleOptions&quot; checked
+onchange=&quot;updateCreatorConfig('shuffleOptions', this.checked)&quot;&gt;<br>
+                                &lt;label
+for=&quot;creatorShuffleOptions&quot;&gt;Xáo trộn đáp án&lt;/label&gt;<br>
+                             &lt;/div&gt;<br>
+                             &lt;div class=&quot;form-group inline&quot;&gt;<br>
+                                &lt;input type=&quot;checkbox&quot;
+id=&quot;creatorInstantFeedback&quot; onchange=&quot;updateCreatorConfig('instantFeedback',
+this.checked)&quot;&gt;<br>
+                                &lt;label
+for=&quot;creatorInstantFeedback&quot;&gt;Phản hồi tức thì&lt;/label&gt;<br>
+                             &lt;/div&gt;<br>
+                             &lt;div class=&quot;form-group inline&quot;&gt;<br>
+                                &lt;input type=&quot;checkbox&quot;
+id=&quot;creatorSingleQuestionMode&quot;
+onchange=&quot;handleSingleModeToggle(this.checked)&quot;&gt;<br>
+                                &lt;label
+for=&quot;creatorSingleQuestionMode&quot;&gt;Chế độ từng câu&lt;/label&gt;<br>
+                             &lt;/div&gt;<br>
+                             &lt;div class=&quot;form-group inline&quot;&gt;<br>
+                                &lt;input type=&quot;checkbox&quot;
+id=&quot;creatorAutoNextQuestion&quot;
+onchange=&quot;updateCreatorConfig('autoNextQuestion', this.checked)&quot;
+disabled&gt;<br>
+                                &lt;label for=&quot;creatorAutoNextQuestion&quot;
+id=&quot;creatorAutoNextQuestionLabel&quot; disabled&gt;Tự động chuyển
+câu&lt;/label&gt;<br>
+                             &lt;/div&gt;<br>
+                        &lt;/div&gt;<br>
+                    &lt;/div&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;creator-section&quot;&gt;<br>
+                    &lt;h3&gt;&lt;i class=&quot;fa-solid
+fa-list-ul&quot;&gt;&lt;/i&gt; Danh Sách Câu Hỏi (Chỉnh sửa thủ
+công)&lt;/h3&gt;<br>
+                    &lt;div id=&quot;questionsList&quot;&gt;<br>
+                        &lt;p style=&quot;text-align: center; opacity:
+0.7;&quot;&gt;Chưa có câu hỏi nào. Hãy dùng AI hoặc thêm thủ công!&lt;/p&gt;<br>
+                    &lt;/div&gt;<br>
+                    &lt;div class=&quot;button-group&quot;&gt;<br>
+                        &lt;button class=&quot;button&quot;
+onclick=&quot;creatorAddQuestion()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-plus&quot;&gt;&lt;/i&gt; Thêm Câu Hỏi&lt;/button&gt;<br>
+                    &lt;/div&gt;<br>
+               &lt;/div&gt;<br>
+           &lt;/div&gt;<br>
+      &lt;/div&gt;<br>
+      &lt;div id=&quot;editor&quot; class=&quot;tab-content&quot;&gt;<br>
+          &lt;div id=&quot;editor-wrapper&quot;&gt;<br>
+               &lt;div id=&quot;drag-drop-overlay&quot;&gt;&lt;i
+class=&quot;fa-solid fa-file-import&quot;&gt;&lt;/i&gt; Thả file JSON vào
+đây&lt;/div&gt;<br>
+               &lt;label for=&quot;jsonInput&quot;&gt;&#128104;‍&#128640; Nhập
+hoặc chỉnh sửa dữ liệu JSON:&lt;/label&gt;<br>
+               &lt;textarea id=&quot;jsonInput&quot;&gt;&lt;/textarea&gt;<br>
+               &lt;div class=&quot;button-group&quot;&gt;<br>
+                   &lt;button class=&quot;button&quot;
+onclick=&quot;loadQuestionsFromJson()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-play&quot;&gt;&lt;/i&gt; Bắt Đầu&lt;/button&gt;<br>
+                   &lt;button class=&quot;button&quot;
+onclick=&quot;loadSampleQuestions()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-wand-magic-sparkles&quot;&gt;&lt;/i&gt; Tải Mẫu&lt;/button&gt;<br>
+                   &lt;button class=&quot;button secondary&quot;
+onclick=&quot;copyJson()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-copy&quot;&gt;&lt;/i&gt; Sao Chép&lt;/button&gt;<br>
+                   &lt;button class=&quot;button danger&quot;
+onclick=&quot;confirmClearEditor()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-trash&quot;&gt;&lt;/i&gt; Xóa&lt;/button&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;button-group&quot;&gt;<br>
+                   &lt;button class=&quot;button&quot;
+onclick=&quot;document.getElementById('fileInput').click()&quot;&gt;&lt;i
+class=&quot;fa-solid fa-upload&quot;&gt;&lt;/i&gt; Import JSON&lt;/button&gt;<br>
+                   &lt;input type=&quot;file&quot; id=&quot;fileInput&quot;
+accept=&quot;.json&quot; style=&quot;display: none;&quot;
+onchange=&quot;importJsonFromFile(event)&quot;&gt;<br>
+                   &lt;button class=&quot;button secondary&quot;
+onclick=&quot;exportJsonToFile()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-download&quot;&gt;&lt;/i&gt; Export JSON&lt;/button&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div id=&quot;editorStatus&quot;
+aria-live=&quot;polite&quot;&gt;&lt;/div&gt;<br>
+           &lt;/div&gt;<br>
+      &lt;/div&gt;<br>
+      &lt;div id=&quot;quiz&quot; class=&quot;tab-content&quot;&gt;<br>
+          &lt;div id=&quot;quizContent&quot; style=&quot;height:
+100%;&quot;&gt;<br>
+               &lt;div style=&quot;text-align: center; padding: 50px; color:
+var(--text-light);&quot;&gt;<br>
+                   &lt;h2&gt;&#127756; Chưa có dữ liệu hành trình&lt;/h2&gt;<br>
+                   &lt;p&gt;Vui lòng tạo hoặc tải đề thi và nhấn &quot;Bắt Đầu&quot;.&lt;/p&gt;<br>
+               &lt;/div&gt;<br>
+           &lt;/div&gt;<br>
+      &lt;/div&gt;<br>
+      &lt;div id=&quot;history&quot; class=&quot;tab-content&quot;&gt;<br>
+          &lt;div style=&quot;display: flex; justify-content: space-between;
+align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;&quot;&gt;<br>
+               &lt;h2 style=&quot;color: var(--primary-glow);&quot;&gt;Lịch Sử
+Làm Bài&lt;/h2&gt;<br>
+               &lt;button class=&quot;button danger&quot;
+id=&quot;clearHistoryBtn&quot;&gt;&lt;i class=&quot;fa-solid
+fa-trash&quot;&gt;&lt;/i&gt; Xóa Lịch Sử&lt;/button&gt;<br>
+           &lt;/div&gt;<br>
+           &lt;div class=&quot;form-group&quot;&gt;<br>
+               &lt;input type=&quot;search&quot; id=&quot;historySearch&quot;
+placeholder=&quot;&#128269; Tìm kiếm theo tiêu đề...&quot;&gt;<br>
+           &lt;/div&gt;<br>
+           &lt;div id=&quot;historyList&quot;&gt;&lt;/div&gt;<br>
+      &lt;/div&gt;<br>
+      &lt;div id=&quot;profile&quot; class=&quot;tab-content&quot;&gt;<br>
+          &lt;h2 style=&quot;color: var(--primary-glow); text-align:
+center;&quot;&gt;Bộ Sưu Tập Thành Tích&lt;/h2&gt;<br>
+          &lt;p style=&quot;text-align: center; opacity: 0.8; margin-bottom:
+20px;&quot;&gt;Đây là những cột mốc vinh quang trong hành trình của bạn.&lt;/p&gt;<br>
+          &lt;div id=&quot;achievementGrid&quot;
+class=&quot;achievement-grid&quot;&gt;&lt;/div&gt;<br>
+      &lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+<br>
+  &lt;!-- MODALS &amp; OVERLAYS --&gt;<br>
+  &lt;div id=&quot;modal&quot; class=&quot;modal-overlay&quot;
+role=&quot;dialog&quot; aria-modal=&quot;true&quot;
+aria-labelledby=&quot;modalTitle&quot;&gt;<br>
+      &lt;div class=&quot;modal-content&quot;&gt;<br>
+           &lt;h2 id=&quot;modalTitle&quot;&gt;Xác nhận&lt;/h2&gt;<br>
+           &lt;p id=&quot;modalText&quot;&gt;Bạn có chắc chắn muốn tiếp tục?&lt;/p&gt;<br>
+           &lt;div class=&quot;button-group&quot;&gt;<br>
+               &lt;button id=&quot;modalConfirm&quot;
+class=&quot;button&quot;&gt;Xác nhận&lt;/button&gt;<br>
+               &lt;button id=&quot;modalCancel&quot; class=&quot;button danger&quot;&gt;Hủy&lt;/button&gt;<br>
+           &lt;/div&gt;<br>
+       &lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+  &lt;div id=&quot;quizLibraryModal&quot; class=&quot;modal-overlay&quot;
+role=&quot;dialog&quot; aria-modal=&quot;true&quot;
+aria-labelledby=&quot;quizLibraryTitle&quot;&gt;<br>
+      &lt;div class=&quot;modal-content&quot;&gt;<br>
+           &lt;h2 id=&quot;quizLibraryTitle&quot;&gt;&lt;i class=&quot;fa-solid
+fa-box-archive&quot;&gt;&lt;/i&gt; Thư Viện Đề Thi&lt;/h2&gt;<br>
+           &lt;div id=&quot;quiz-library-list&quot;&gt;&lt;/div&gt;<br>
+           &lt;div class=&quot;button-group&quot;&gt;<br>
+               &lt;button class=&quot;button danger&quot;
+onclick=&quot;hideModal('quizLibraryModal')&quot;&gt;Đóng&lt;/button&gt;<br>
+           &lt;/div&gt;<br>
+       &lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+  &lt;div id=&quot;pause-overlay&quot; class=&quot;modal-overlay&quot;&gt;<br>
+      &lt;div class=&quot;modal-content&quot;&gt;<br>
+           &lt;h2 id=&quot;pauseTitle&quot;&gt;⏸️ ĐÃ TẠM DỪNG&lt;/h2&gt;<br>
+           &lt;p&gt;Thời gian của bạn đã được dừng lại. Nhấn để tiếp tục.&lt;/p&gt;<br>
+           &lt;button class=&quot;button warning&quot;
+onclick=&quot;resumeQuiz()&quot;&gt;Tiếp Tục &lt;i class=&quot;fa-solid
+fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;<br>
+       &lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+<br>
+  &lt;div id=&quot;streakNotifier&quot; class=&quot;notifier&quot;&gt;<br>
+      &lt;div class=&quot;streak-notifier-content&quot;&gt;&lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+  &lt;div id=&quot;achievementNotifier&quot; class=&quot;notifier&quot;&gt;<br>
+      &lt;div class=&quot;achievement-notifier-content&quot;&gt;&lt;/div&gt;<br>
+  &lt;/div&gt;<br>
+<br>
+&lt;script&gt;<br>
+// --- GAME CONFIG &amp; CONSTANTS ---<br>
+const RANKS = [<br>
+  { name: &quot;Tân Binh Vũ Trụ&quot;, xp: 0, icon:
+&quot;fa-baby-carriage&quot; },<br>
+  { name: &quot;Phi Hành Gia Tập Sự&quot;, xp: 1000, icon: &quot;fa-user-graduate&quot;
+},<br>
+  { name: &quot;Hoa Tiêu Tinh Hệ&quot;, xp: 2500, icon:
+&quot;fa-map-location-dot&quot; },<br>
+  { name: &quot;Thuyền Trưởng Du Hành&quot;, xp: 5000, icon:
+&quot;fa-satellite&quot; },<br>
+  { name: &quot;Đô Đốc Thiên Hà&quot;, xp: 10000, icon: &quot;fa-star&quot; },<br>
+  { name: &quot;Kẻ Chinh Phục Vũ Trụ&quot;, xp: 20000, icon:
+&quot;fa-crown&quot; }<br>
+];<br>
+<br>
+const ALL_ACHIEVEMENTS = {<br>
+  'FIRST_FLIGHT': { title: &quot;Chuyến Bay Đầu Tiên&quot;, desc: &quot;Hoàn
+thành bài thi đầu tiên.&quot;, icon: &quot;fa-rocket&quot; },<br>
+  'PERFECTIONIST': { title: &quot;Nhà Vô Địch&quot;, desc: &quot;Đạt 100% điểm
+trong một bài thi.&quot;, icon: &quot;fa-trophy&quot; },<br>
+  'LIGHT_SPEED': { title: &quot;Tốc Độ Ánh Sáng&quot;, desc: &quot;Hoàn thành
+bài thi khi còn hơn 50% thời gian.&quot;, icon: &quot;fa-bolt&quot; },<br>
+  'CREATOR': { title: &quot;Nhà Sáng Tạo&quot;, desc: &quot;Tự tạo và lưu một bộ
+đề thi.&quot;, icon: &quot;fa-hammer&quot; },<br>
+  'LIBRARIAN': { title: &quot;Thư Viện Trí Thức&quot;, desc: &quot;Lưu 5 bộ đề
+thi vào thư viện.&quot;, icon: &quot;fa-book-atlas&quot; },<br>
+  'STREAK_MASTER': { title: &quot;Nóng Bỏng&quot;, desc: &quot;Đạt chuỗi 10 câu
+trả lời đúng.&quot;, icon: &quot;fa-fire&quot; },<br>
+  'AI_ASSISTED': { title: &quot;Trợ Lý AI&quot;, desc: &quot;Tạo một bài thi bằng
+AI.&quot;, icon: &quot;fa-brain&quot; },<br>
+  'CONSISTENT': { title: &quot;Chuyên Cần&quot;, desc: &quot;Hoàn thành 5 bài
+thi.&quot;, icon: &quot;fa-calendar-check&quot; },<br>
+};<br>
+<br>
+<br>
+// --- STATE MANAGEMENT ---<br>
+let appState = {<br>
+  currentQuizData: null,<br>
+  userAnswers: {},<br>
+  quizTimer: null,<br>
+  timeLeft: 0,<br>
+  isPaused: false,<br>
+  jsonEditor: null,<br>
+  quizStartTime: null,<br>
+  quizEndTime: null,<br>
+  shuffledQuestions: [],<br>
+  shuffledOptions: {},<br>
+  quizHistory: [],<br>
+  savedQuizzes: [],<br>
+  currentQuestionIndex: 0,<br>
+  modal: {<br>
+      lastFocusedElement: null,<br>
+      onConfirm: () =&gt; {},<br>
+      onCancel: () =&gt; hideModal('modal'),<br>
+  },<br>
+  creatorData: {<br>
+      id: `quiz_${Date.now()}`,<br>
+      title: &quot;Bài Thi Mới&quot;,<br>
+      config: { timeLimit: 600, shuffleQuestions: true, shuffleOptions: true,
+instantFeedback: false, singleQuestionMode: false, autoNextQuestion: false },<br>
+      questions: []<br>
+  },<br>
+  hasUnsavedChanges: false,<br>
+  userProfile: {<br>
+      xp: 0,<br>
+      achievements: [],<br>
+  },<br>
+  currentStreak: 0,<br>
+  longestStreak: 0,<br>
+};<br>
+<br>
+// --- CANVAS STARFIELD BACKGROUND ---<br>
+function setupStarfield() {<br>
+  const canvas = document.getElementById('stars-canvas');     if (!canvas)
+return;     const ctx = canvas.getContext('2d');     let stars = [];     let
+animationFrameId;     function resizeCanvas() {        
+cancelAnimationFrame(animationFrameId);         canvas.width =
+window.innerWidth;         canvas.height = window.innerHeight;         stars =
+[];         for (let i = 0; i &lt; 400; i++) {            
+stars.push({                 x: Math.random() * canvas.width,                
+y: Math.random() * canvas.height,                 radius: Math.random() *
+1.5,                 vx: 0,                 vy: (Math.random() * 0.5) +
+0.2             });         }         animate();     }     function animate()
+{         ctx.clearRect(0, 0, canvas.width, canvas.height);         ctx.fillStyle
+= &quot;#fff&quot;;         stars.forEach(s =&gt; {             s.y +=
+s.vy;             if (s.y &gt; canvas.height) {                 s.y =
+0;                 s.x = Math.random() * canvas.width;            
+}             ctx.beginPath();             ctx.arc(s.x, s.y, s.radius, 0, 2 *
+Math.PI);             ctx.fill();         });         animationFrameId =
+requestAnimationFrame(animate);     }     window.addEventListener('resize',
+resizeCanvas);     resizeCanvas();<br>
+}<br>
+<br>
+// --- UTILITY &amp; EFFECTS FUNCTIONS ---<br>
+function shuffleArray(array) { const newArray = [...array]; for (let i =
+newArray.length - 1; i &gt; 0; i--) { const j = Math.floor(Math.random() * (i +
+1)); [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; } return
+newArray; }<br>
+function arraysEqual(a, b) { if (!Array.isArray(a) || !Array.isArray(b)) return
+false; if (a.length !== b.length) return false; const sortedA = [...a].sort((x,
+y) =&gt; String(x).localeCompare(String(y))); const sortedB = [...b].sort((x,
+y) =&gt; String(x).localeCompare(String(y))); return sortedA.every((val, index)
+=&gt; val === sortedB[index]); }<br>
+function launchConfetti() { if (window.confetti) { confetti({ particleCount:
+150, spread: 180, origin: { y: 0.6 }, zIndex: 2000 }); } }<br>
+function animateScore(targetElement, finalScore, totalScore) { let currentScore
+= 0; const increment = Math.max(1, Math.ceil(finalScore / 100)); const step =
+() =&gt; { currentScore += increment; if (currentScore &gt;= finalScore) {
+targetElement.textContent = `${finalScore} / ${totalScore} điểm`; return; }
+targetElement.textContent = `${currentScore} / ${totalScore} điểm`;
+requestAnimationFrame(step); }; requestAnimationFrame(step); }<br>
+function formatTime(seconds) { if (isNaN(seconds) || seconds &lt; 0) return
+&quot;00:00&quot;; const mins = Math.floor(seconds / 60); const secs = seconds
+% 60; return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2,
+'0')}`; }<br>
+<br>
+// --- INITIALIZATION ---<br>
+document.addEventListener('DOMContentLoaded', () =&gt; {<br>
+  appState.jsonEditor =
+CodeMirror.fromTextArea(document.getElementById('jsonInput'), {<br>
+      mode: { name: &quot;javascript&quot;, json: true },<br>
+      lineNumbers: true,<br>
+      theme: &quot;dracula&quot;,<br>
+      autofocus: true<br>
+  });<br>
+  const savedJson = localStorage.getItem('quizJson');<br>
+  if (savedJson) {<br>
+      try { appState.jsonEditor.setValue(JSON.stringify(JSON.parse(savedJson),
+null, 4)); } catch (e) { localStorage.removeItem('quizJson'); }<br>
+  }<br>
+  setupStarfield();<br>
+  loadHistory();<br>
+  loadSavedQuizzes();<br>
+  loadUserProfile();<br>
+  showTab('creator');<br>
+  renderCreatorUI();<br>
+  renderAchievements();<br>
+  document.getElementById('clearHistoryBtn').addEventListener('click', () =&gt;
+{<br>
+      showModal('modal', 'Xác nhận xóa', 'Bạn có chắc muốn xóa toàn bộ lịch sử
+làm bài? Hành động này không thể hoàn tác.', clearHistory);<br>
+  });<br>
+  document.getElementById('historySearch').addEventListener('input', (e) =&gt;
+renderHistory(e.target.value));<br>
+  const editorWrapper = document.getElementById('editor-wrapper');<br>
+  const dragDropOverlay = document.getElementById('drag-drop-overlay');<br>
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName =&gt; {<br>
+      editorWrapper.addEventListener(eventName, (e) =&gt; { e.preventDefault();
+e.stopPropagation(); }, false);<br>
+  });<br>
+  ['dragenter', 'dragover'].forEach(eventName =&gt; {<br>
+      editorWrapper.addEventListener(eventName, () =&gt; { dragDropOverlay.style.display
+= 'flex'; }, false);<br>
+  });<br>
+  ['dragleave', 'drop'].forEach(eventName =&gt; {<br>
+      editorWrapper.addEventListener(eventName, () =&gt; {
+dragDropOverlay.style.display = 'none'; }, false);<br>
+  });<br>
+  editorWrapper.addEventListener('drop', handleFileDrop, false);<br>
+  window.addEventListener('beforeunload', (e) =&gt; {<br>
+      const inQuiz =
+document.getElementById('quiz').classList.contains('active') &amp;&amp;
+appState.currentQuizData;<br>
+      if (appState.hasUnsavedChanges || inQuiz) {<br>
+          e.preventDefault();<br>
+          e.returnValue = '';<br>
+          return 'Bạn có thay đổi chưa lưu hoặc bài thi đang làm dở. Bạn có chắc
+muốn rời đi?';<br>
+      }<br>
+  });<br>
+  const modal = document.getElementById('modal');<br>
+  modal.addEventListener('keydown', (e) =&gt; handleModalKeydown(e, 'modal'));<br>
+  document.getElementById('modalCancel').addEventListener('click', () =&gt;
+appState.modal.onCancel());<br>
+  document.getElementById('modalConfirm').addEventListener('click', () =&gt;
+appState.modal.onConfirm());<br>
+});<br>
+<br>
+// --- UI &amp; THEME ---<br>
+function showTab(tabName) { document.querySelectorAll('.tab-content').forEach(c
+=&gt; c.classList.remove('active'));
+document.querySelectorAll('.tab').forEach(t =&gt;
+t.classList.remove('active'));
+document.getElementById(tabName).classList.add('active'); document.querySelector(`.tab[onclick=&quot;showTab('${tabName}')&quot;]`).classList.add('active');
+if (tabName === 'editor' &amp;&amp; appState.jsonEditor) {
+appState.jsonEditor.refresh(); } else if (tabName === 'history') {
+renderHistory(); } }<br>
+function showStatus(elementId, message, type = 'info', duration = 3000) { const
+statusEl = document.getElementById(elementId); if (!statusEl) return;
+statusEl.innerHTML = `&lt;div class=&quot;status-message
+${type}&quot;&gt;${message}&lt;/div&gt;`; setTimeout(() =&gt; { if
+(statusEl.innerHTML.includes(message)) { statusEl.innerHTML = ''; } },
+duration); }<br>
+function showModal(modalId, title, text, onConfirm, onCancel) { const modal =
+document.getElementById(modalId); if (!modal) return; if (modalId === 'modal')
+{ appState.modal.lastFocusedElement = document.activeElement; modal.querySelector('#modalTitle').textContent
+= title; modal.querySelector('#modalText').textContent = text;
+appState.modal.onConfirm = () =&gt; { onConfirm(); hideModal('modal'); };
+appState.modal.onCancel = onCancel || (() =&gt; hideModal('modal')); }
+modal.style.display = 'flex'; const firstFocusable =
+modal.querySelector('.button, a, input, select, textarea'); if (firstFocusable)
+firstFocusable.focus(); }<br>
+function hideModal(modalId) { const modal = document.getElementById(modalId);
+if (modal) modal.style.display = 'none'; if (modalId === 'modal' &amp;&amp;
+appState.modal.lastFocusedElement) { appState.modal.lastFocusedElement.focus();
+} }<br>
+function handleModalKeydown(e, modalId) { const modal =
+document.getElementById(modalId); if (e.key !== 'Tab' || !modal ||
+modal.style.display === 'none') return; const focusableElements =
+Array.from(modal.querySelectorAll('.button, a, input, select, textarea')); if
+(focusableElements.length === 0) return; const firstElement =
+focusableElements[0]; const lastElement = focusableElements[focusableElements.length
+- 1]; if (e.shiftKey) { if (document.activeElement === firstElement) {
+lastElement.focus(); e.preventDefault(); } } else { if (document.activeElement
+=== lastElement) { firstElement.focus(); e.preventDefault(); } } }<br>
+<br>
+<br>
+// --- GAMIFICATION LOGIC ---<br>
+function loadUserProfile() { const savedProfile =
+localStorage.getItem('userProfile'); if (savedProfile) { appState.userProfile =
+JSON.parse(savedProfile); } updateHeaderProfile(); }<br>
+function saveUserProfile() { localStorage.setItem('userProfile', JSON.stringify(appState.userProfile));
+}<br>
+function updateHeaderProfile() { const currentRank = getCurrentRank(); const
+nextRank = getNextRank(); document.getElementById('userRank').textContent =
+currentRank.name; let xpForNextRank = 0; let xpInCurrentRank = 0; if (nextRank)
+{ xpForNextRank = nextRank.xp - currentRank.xp; xpInCurrentRank =
+appState.userProfile.xp - currentRank.xp;
+document.getElementById('userXP').textContent = `${xpInCurrentRank} /
+${xpForNextRank}`; document.getElementById('xpBarInner').style.width =
+`${(xpInCurrentRank / xpForNextRank) * 100}%`; } else {
+document.getElementById('userXP').textContent = `${appState.userProfile.xp}`;
+document.getElementById('xpBarInner').style.width = '100%'; } }<br>
+function getCurrentRank() { let currentRank = RANKS[0]; for (const rank of
+RANKS) { if (appState.userProfile.xp &gt;= rank.xp) { currentRank = rank; }
+else { break; } } return currentRank; }<br>
+function getNextRank() { const currentRank = getCurrentRank(); const
+currentRankIndex = RANKS.findIndex(r =&gt; r.name === currentRank.name); return
+RANKS[currentRankIndex + 1] || null; }<br>
+function updateXP(xpGained) { const oldRank = getCurrentRank();
+appState.userProfile.xp += xpGained; const newRank = getCurrentRank(); if
+(newRank.name !== oldRank.name) { launchConfetti();
+showAchievementNotification({ title: `THĂNG HẠNG!`, desc: `Bạn đã đạt hạng
+${newRank.name}!`, icon: newRank.icon }); } saveUserProfile();
+updateHeaderProfile(); }<br>
+function showStreakNotification(streakCount) { const notifier =
+document.getElementById('streakNotifier'); if (!notifier) return;
+notifier.querySelector('.streak-notifier-content').textContent = `&#128293; Chuỗi
+x${streakCount}!`; notifier.classList.add('show'); setTimeout(() =&gt; {
+notifier.classList.remove('show'); }, 1500); }<br>
+function showAchievementNotification(achievement) { const notifier =
+document.getElementById('achievementNotifier'); if (!notifier) return;
+notifier.querySelector('.achievement-notifier-content').innerHTML = ` &lt;i
+class=&quot;fa-solid ${achievement.icon}&quot;&gt;&lt;/i&gt; &lt;div&gt;
+&lt;h4&gt;Thành Tích Mở Khóa!&lt;/h4&gt;
+&lt;p&gt;${achievement.title}&lt;/p&gt; &lt;/div&gt; `;
+notifier.classList.add('show'); setTimeout(() =&gt; {
+notifier.classList.remove('show'); }, 4000); }<br>
+function unlockAchievement(achievementId) { if
+(!appState.userProfile.achievements.includes(achievementId)) {
+appState.userProfile.achievements.push(achievementId); saveUserProfile();
+showAchievementNotification(ALL_ACHIEVEMENTS[achievementId]);
+renderAchievements(); } }<br>
+function renderAchievements() { const grid =
+document.getElementById('achievementGrid'); if (!grid) return; grid.innerHTML =
+Object.keys(ALL_ACHIEVEMENTS).map(key =&gt; { const achievement =
+ALL_ACHIEVEMENTS[key]; const isUnlocked =
+appState.userProfile.achievements.includes(key); return ` &lt;div
+class=&quot;achievement-card ${isUnlocked ? 'unlocked' : 'locked'}&quot;&gt;
+&lt;i class=&quot;fa-solid ${achievement.icon}&quot;&gt;&lt;/i&gt;
+&lt;h4&gt;${achievement.title}&lt;/h4&gt;
+&lt;p&gt;${achievement.desc}&lt;/p&gt; &lt;/div&gt; `; }).join(''); }<br>
+<br>
+// --- GEMINI AI INTEGRATION ---<br>
+const GEMINI_API_KEY = &quot;AIzaSyDxX9uoPxerdY-iFqaiHvcInu_GFnyN2l4&quot;;
+const GEMINI_API_URL =
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+async function callGeminiAPIWithExponentialBackoff(prompt, maxRetries = 5) {
+let delay = 1000; for (let i = 0; i &lt; maxRetries; i++) { try { const
+response = await fetch(GEMINI_API_URL, { method: 'POST', headers: {
+'Content-Type': 'application/json' }, body: JSON.stringify({
+&quot;contents&quot;: [{ &quot;parts&quot;: [{ &quot;text&quot;: prompt }] }]
+}), }); if (response.status === 429) { await new Promise(resolve =&gt; setTimeout(resolve,
+delay)); delay *= 2; continue; } if (!response.ok) { const errorData = await
+response.json(); throw new Error(`API Error: ${errorData.error.message}`); }
+const result = await response.json(); if (!result.candidates ||
+!result.candidates[0].content.parts[0].text) { throw new Error(&quot;Invalid
+response structure from API.&quot;); } return
+result.candidates[0].content.parts[0].text; } catch (error) { if (i ===
+maxRetries - 1) throw error; await new Promise(resolve =&gt;
+setTimeout(resolve, delay)); delay *= 2; } } throw new Error(&quot;API call
+failed after multiple retries.&quot;); }<br>
+<br>
+async function generateQuizWithAI() {<br>
+   const topic = document.getElementById('aiTopic').value;<br>
+   const numQuestions = document.getElementById('aiNumQuestions').value;<br>
+   const statusEl = document.getElementById('aiStatus');<br>
+   const generateBtn = document.getElementById('aiGenerateBtn');<br>
+   const aiActionsContainer = document.getElementById('aiActionsContainer');<br>
+   if (!topic.trim()) { showStatus('aiStatus', 'Vui lòng nhập chủ đề.',
+'error'); return; }<br>
+   if (!GEMINI_API_KEY) { showStatus('aiStatus', 'Lỗi: Vui lòng cung cấp API
+Key của Gemini.', 'error', 5000); return; }<br>
+   statusEl.innerHTML = '&lt;div class=&quot;loader&quot;
+style=&quot;width:24px; height:24px; border-width:3px;&quot;&gt;&lt;/div&gt;
+&lt;p&gt;AI đang phân tích và tạo câu hỏi...&lt;/p&gt;';<br>
+   generateBtn.disabled = true;<br>
+   aiActionsContainer.style.display = 'none';<br>
+   appState.creatorData.questions = [];<br>
+   renderCreatorUI();<br>
+   try {<br>
+       const createQuizPrompt = `<br>
+           Hãy tạo một bài kiểm tra trắc nghiệm SÁNG TẠO và ĐA DẠNG về chủ đề:
+&quot;${topic}&quot;.<br>
+           Ngôn ngữ và độ khó của bài kiểm tra nên phù hợp một cách tự nhiên với
+chủ đề được cung cấp. Ví dụ: nếu chủ đề là &quot;English literature&quot;, bài
+kiểm tra nên bằng tiếng Anh.<br>
+           Số lượng câu hỏi: ${numQuestions}.<br>
+           Vui lòng trả về kết quả dưới dạng một đối tượng JSON duy nhất, không
+có bất kỳ văn bản giải thích nào khác bên ngoài JSON.<br>
+           JSON phải có cấu trúc chính xác như sau, bao gồm các loại câu hỏi
+&quot;multiple-choice&quot;, &quot;multiple-selection&quot;,
+&quot;fill-in-the-blank&quot;, &quot;true-false&quot;, và &quot;matching&quot;:<br>
+           {<br>
+             &quot;title&quot;: &quot;Một tiêu đề hấp dẫn liên quan đến chủ đề&quot;,<br>
+             &quot;config&quot;: { &quot;timeLimit&quot;: 600,
+&quot;shuffleQuestions&quot;: true, &quot;shuffleOptions&quot;: true,
+&quot;instantFeedback&quot;: false, &quot;singleQuestionMode&quot;: false,
+&quot;autoNextQuestion&quot;: false },<br>
+             &quot;questions&quot;: [<br>
+               {<br>
+                 &quot;type&quot;: &quot;...&quot;,<br>
+                 &quot;question&quot;: &quot;Nội dung câu hỏi...&quot;,<br>
+                 &quot;imageUrl&quot;: &quot;URL hình ảnh minh họa (tùy chọn,
+có thể để trống)&quot;,<br>
+                 // Dưới đây là cấu trúc cho từng loại<br>
+                 // &quot;multiple-choice&quot;:<br>
+                 &quot;options&quot;: [&quot;Lựa chọn A&quot;, &quot;Lựa chọn
+B&quot;], &quot;correctAnswer&quot;: 0,<br>
+                 // &quot;multiple-selection&quot;:<br>
+                 &quot;options&quot;: [&quot;Lựa chọn A&quot;, &quot;Lựa chọn
+B&quot;, &quot;Lựa chọn C&quot;], &quot;correctAnswer&quot;: [0, 2],<br>
+                 // &quot;fill-in-the-blank&quot;:<br>
+                 &quot;correctAnswer&quot;: &quot;đáp án&quot;,<br>
+                 // &quot;true-false&quot;:<br>
+                 &quot;correctAnswer&quot;: true, // hoặc false<br>
+                 // &quot;matching&quot;:<br>
+                 &quot;prompts&quot;: [&quot;Vế A1&quot;, &quot;Vế A2&quot;],
+&quot;answers&quot;: [&quot;Vế B1&quot;, &quot;Vế B2&quot;], // prompts và
+answers phải cùng độ dài<br>
+                 // Các trường chung<br>
+                 &quot;points&quot;: 10,<br>
+                 &quot;explanation&quot;: &quot;Giải thích ngắn gọn cho câu trả
+lời đúng.&quot;<br>
+               }<br>
+             ]<br>
+           }<br>
+           Hãy đảm bảo rằng:<br>
+           - Có sự kết hợp của các loại câu hỏi.<br>
+           - Với loại &quot;matching&quot;, mảng &quot;prompts&quot; và
+&quot;answers&quot; có cùng số lượng phần tử.<br>
+           - Toàn bộ phản hồi chỉ là một khối mã JSON hợp lệ.<br>
+       `;<br>
+       let jsonText = await
+callGeminiAPIWithExponentialBackoff(createQuizPrompt);<br>
+       jsonText = jsonText.replace(/```json/g, '').replace(/```/g, '').trim();<br>
+       const generatedQuiz = JSON.parse(jsonText);<br>
+       if (!generatedQuiz.questions || !Array.isArray(generatedQuiz.questions))
+{<br>
+           throw new Error(&quot;Định dạng JSON do AI tạo ra không hợp lệ.&quot;);<br>
+       }<br>
+       appState.creatorData = { ...appState.creatorData, ...generatedQuiz, id:
+`quiz_${Date.now()}` };<br>
+       appState.creatorData.questions = generatedQuiz.questions.map(q =&gt;
+({...q, id: Date.now() + Math.random()}));<br>
+       renderCreatorUI();<br>
+       showStatus('aiStatus', `✅ Đã tạo thành công
+${generatedQuiz.questions.length} câu hỏi!`, 'success');<br>
+       aiActionsContainer.style.display = 'flex';<br>
+       appState.hasUnsavedChanges = true;<br>
+       unlockAchievement('AI_ASSISTED');<br>
+   } catch (error) {<br>
+       console.error(&quot;Lỗi khi tạo quiz bằng AI:&quot;, error);<br>
+       showStatus('aiStatus', `❌ Đã xảy ra lỗi: ${error.message}`, 'error',
+6000);<br>
+   } finally {<br>
+       generateBtn.disabled = false;<br>
+   }<br>
+}<br>
+<br>
+// --- QUIZ CREATOR LOGIC ---<br>
+function renderCreatorUI() {<br>
+   const questionsListEl = document.getElementById('questionsList');<br>
+   document.getElementById('creatorTitle').value = appState.creatorData.title;<br>
+   document.getElementById('creatorTimeLimit').value =
+appState.creatorData.config.timeLimit;<br>
+   document.getElementById('creatorShuffleQuestions').checked =
+appState.creatorData.config.shuffleQuestions;<br>
+   document.getElementById('creatorShuffleOptions').checked =
+appState.creatorData.config.shuffleOptions;<br>
+   document.getElementById('creatorInstantFeedback').checked =
+appState.creatorData.config.instantFeedback;<br>
+   document.getElementById('creatorSingleQuestionMode').checked =
+appState.creatorData.config.singleQuestionMode;<br>
+   document.getElementById('creatorAutoNextQuestion').checked =
+appState.creatorData.config.autoNextQuestion;<br>
+   handleSingleModeToggle(appState.creatorData.config.singleQuestionMode);<br>
+<br>
+   if (appState.creatorData.questions.length === 0) {<br>
+       questionsListEl.innerHTML = `&lt;p style=&quot;text-align: center;
+opacity: 0.7;&quot;&gt;Chưa có câu hỏi nào. Hãy dùng AI hoặc thêm thủ
+công!&lt;/p&gt;`;<br>
+       return;<br>
+   }<br>
+<br>
+   questionsListEl.innerHTML = appState.creatorData.questions.map((q, qIndex)
+=&gt; {<br>
+       let optionsHtml = '';<br>
+       if (q.type === 'multiple-choice' || q.type === 'multiple-selection') {<br>
+           const inputType = q.type === 'multiple-selection' ? 'checkbox' :
+'radio';<br>
+           optionsHtml = `<br>
+               &lt;label&gt;Các lựa chọn &amp; Đáp án đúng&lt;/label&gt;<br>
+               ${(q.options || []).map((opt, oIndex) =&gt; `<br>
+                   &lt;div class=&quot;creator-option&quot;&gt;<br>
+                       &lt;input type=&quot;${inputType}&quot;
+name=&quot;correctAnswer_${q.id}&quot;
+onchange=&quot;updateCreatorCorrectAnswer(${qIndex}, ${oIndex})&quot;
+${isCorrectAnswer(q, oIndex) ? 'checked' : ''}&gt;<br>
+                       &lt;input type=&quot;text&quot; value=&quot;${opt}&quot;
+placeholder=&quot;Nội dung lựa chọn ${oIndex + 1}&quot;
+oninput=&quot;updateCreatorOption(${qIndex}, ${oIndex}, this.value)&quot;&gt;<br>
+                       &lt;button class=&quot;button danger&quot;
+onclick=&quot;removeCreatorOption(${qIndex}, ${oIndex})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-times&quot;&gt;&lt;/i&gt;&lt;/button&gt;<br>
+                   &lt;/div&gt;<br>
+               `).join('')}<br>
+               &lt;button class=&quot;button&quot;
+onclick=&quot;addCreatorOption(${qIndex})&quot;&gt;&lt;i class=&quot;fa-solid
+fa-plus&quot;&gt;&lt;/i&gt; Thêm lựa chọn&lt;/button&gt;<br>
+           `;<br>
+       } else if (q.type === 'fill-in-the-blank') {<br>
+           const answerValue = Array.isArray(q.correctAnswer) ?
+q.correctAnswer.join(';') : q.correctAnswer || '';<br>
+           optionsHtml = `<br>
+               &lt;div class=&quot;form-group&quot;&gt;<br>
+                   &lt;label&gt;Đáp án đúng (phân cách bởi dấu ; nếu có nhiều)&lt;/label&gt;<br>
+                   &lt;input type=&quot;text&quot;
+value=&quot;${answerValue}&quot; oninput=&quot;updateCreatorFillBlankAnswer(${qIndex},
+this.value)&quot;&gt;<br>
+               &lt;/div&gt;<br>
+           `;<br>
+       } else if (q.type === 'true-false') {<br>
+            optionsHtml = `<br>
+               &lt;label&gt;Đáp án đúng&lt;/label&gt;<br>
+               &lt;div class=&quot;button-group&quot; style=&quot;justify-content:
+flex-start;&quot;&gt;<br>
+                   &lt;input type=&quot;radio&quot; id=&quot;true_${q.id}&quot;
+name=&quot;correctAnswer_${q.id}&quot;
+onchange=&quot;updateCreatorTrueFalseAnswer(${qIndex}, true)&quot;
+${q.correctAnswer === true ? 'checked' : ''}&gt;<br>
+                   &lt;label for=&quot;true_${q.id}&quot;
+style=&quot;margin-bottom:0;&quot;&gt;Đúng&lt;/label&gt;<br>
+                   &lt;input type=&quot;radio&quot;
+id=&quot;false_${q.id}&quot; name=&quot;correctAnswer_${q.id}&quot;
+onchange=&quot;updateCreatorTrueFalseAnswer(${qIndex}, false)&quot;
+${q.correctAnswer === false ? 'checked' : ''}&gt;<br>
+                   &lt;label for=&quot;false_${q.id}&quot;
+style=&quot;margin-bottom:0;&quot;&gt;Sai&lt;/label&gt;<br>
+               &lt;/div&gt;<br>
+           `;<br>
+       } else if (q.type === 'matching') {<br>
+           optionsHtml = `<br>
+               &lt;label&gt;Các cặp Ghép đôi&lt;/label&gt;<br>
+               ${(q.prompts || []).map((prompt, pIndex) =&gt; `<br>
+                   &lt;div class=&quot;creator-matching-pair&quot;&gt;<br>
+                       &lt;input type=&quot;text&quot;
+value=&quot;${prompt}&quot; placeholder=&quot;Vế A ${pIndex + 1}&quot;
+oninput=&quot;updateCreatorMatching(${qIndex}, ${pIndex}, 'prompts',
+this.value)&quot;&gt;<br>
+                       &lt;input type=&quot;text&quot;
+value=&quot;${q.answers[pIndex] || ''}&quot; placeholder=&quot;Vế B ${pIndex +
+1}&quot; oninput=&quot;updateCreatorMatching(${qIndex}, ${pIndex}, 'answers',
+this.value)&quot;&gt;<br>
+                       &lt;button class=&quot;button danger&quot;
+onclick=&quot;removeCreatorMatchingPair(${qIndex}, ${pIndex})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-times&quot;&gt;&lt;/i&gt;&lt;/button&gt;<br>
+                   &lt;/div&gt;<br>
+               `).join('')}<br>
+               &lt;button class=&quot;button&quot;
+onclick=&quot;addCreatorMatchingPair(${qIndex})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-plus&quot;&gt;&lt;/i&gt; Thêm cặp&lt;/button&gt;<br>
+           `;<br>
+       }<br>
+<br>
+       return `<br>
+           &lt;div class=&quot;creator-question&quot;
+data-index=&quot;${qIndex}&quot;&gt;<br>
+               &lt;div style=&quot;display: flex; justify-content:
+space-between; align-items: center; margin-bottom: 15px;&quot;&gt;<br>
+                   &lt;label style=&quot;margin: 0;&quot;&gt;&lt;strong&gt;Câu
+hỏi ${qIndex + 1}&lt;/strong&gt;&lt;/label&gt;<br>
+                   &lt;button type=&quot;button&quot; class=&quot;button
+danger&quot; onclick=&quot;removeCreatorQuestion(${qIndex})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-trash&quot;&gt;&lt;/i&gt; Xóa câu hỏi&lt;/button&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;form-group&quot;&gt;<br>
+                   &lt;label&gt;Loại câu hỏi&lt;/label&gt;<br>
+                   &lt;select onchange=&quot;updateQuestionType(${qIndex},
+this.value)&quot;&gt;<br>
+                       &lt;option value=&quot;multiple-choice&quot; ${q.type
+=== 'multiple-choice' ? 'selected' : ''}&gt;Một đáp án&lt;/option&gt;<br>
+                       &lt;option value=&quot;multiple-selection&quot; ${q.type
+=== 'multiple-selection' ? 'selected' : ''}&gt;Nhiều đáp án&lt;/option&gt;<br>
+                       &lt;option value=&quot;fill-in-the-blank&quot; ${q.type
+=== 'fill-in-the-blank' ? 'selected' : ''}&gt;Điền vào chỗ trống&lt;/option&gt;<br>
+                       &lt;option value=&quot;true-false&quot; ${q.type ===
+'true-false' ? 'selected' : ''}&gt;Đúng / Sai&lt;/option&gt;<br>
+                       &lt;option value=&quot;matching&quot; ${q.type ===
+'matching' ? 'selected' : ''}&gt;Nối Cột&lt;/option&gt;<br>
+                   &lt;/select&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;form-group&quot;&gt;<br>
+                   &lt;label&gt;Nội dung câu hỏi&lt;/label&gt;<br>
+                   &lt;textarea oninput=&quot;updateCreatorField(${qIndex},
+'question', this.value)&quot; rows=&quot;2&quot;&gt;${q.question ||
+''}&lt;/textarea&gt;<br>
+               &lt;/div&gt;<br>
+               &lt;div class=&quot;form-group&quot;&gt;<br>
+                   &lt;label&gt;URL Hình ảnh (tùy chọn)&lt;/label&gt;<br>
+                   &lt;input type=&quot;text&quot;
+placeholder=&quot;https://example.com/image.png&quot; value=&quot;${q.imageUrl
+|| ''}&quot; oninput=&quot;updateCreatorField(${qIndex}, 'imageUrl',
+this.value)&quot;&gt;<br>
+               &lt;/div&gt;<br>
+               ${optionsHtml}<br>
+           &lt;/div&gt;<br>
+       `;<br>
+   }).join('');<br>
+}<br>
+<br>
+function isCorrectAnswer(question, optionIndex) { if (question.type ===
+'multiple-selection') { return Array.isArray(question.correctAnswer) &amp;&amp;
+question.correctAnswer.includes(optionIndex); } return question.correctAnswer
+=== optionIndex; }<br>
+function updateCreatorConfig(field, value) { if (field === 'title') {
+appState.creatorData.title = value; } else { appState.creatorData.config[field]
+= value; } appState.hasUnsavedChanges = true; }<br>
+function handleSingleModeToggle(isChecked) {
+updateCreatorConfig('singleQuestionMode', isChecked); const autoNextCheckbox =
+document.getElementById('creatorAutoNextQuestion'); const autoNextLabel =
+document.getElementById('creatorAutoNextQuestionLabel');
+autoNextCheckbox.disabled = !isChecked;
+autoNextLabel.toggleAttribute('disabled', !isChecked); if (!isChecked) {
+autoNextCheckbox.checked = false; updateCreatorConfig('autoNextQuestion',
+false); } }<br>
+function updateCreatorField(qIndex, field, value) {
+appState.creatorData.questions[qIndex][field] = value;
+appState.hasUnsavedChanges = true; }<br>
+function updateCreatorFillBlankAnswer(qIndex, value) { const answers = value.split(';').map(s
+=&gt; s.trim()).filter(Boolean);
+appState.creatorData.questions[qIndex].correctAnswer = answers.length &gt; 1 ?
+answers : answers[0] || &quot;&quot;; appState.hasUnsavedChanges = true; }<br>
+function updateCreatorTrueFalseAnswer(qIndex, value) { appState.creatorData.questions[qIndex].correctAnswer
+= value; appState.hasUnsavedChanges = true; }<br>
+function updateQuestionType(qIndex, type) { const q =
+appState.creatorData.questions[qIndex]; q.type = type; q.correctAnswer =
+undefined; delete q.options; delete q.prompts; delete q.answers; if (type ===
+'multiple-selection') { q.correctAnswer = []; q.options = [&quot;Lựa chọn
+1&quot;, &quot;Lựa chọn 2&quot;]; } else if (type === 'multiple-choice') {
+q.correctAnswer = 0; q.options = [&quot;Lựa chọn 1&quot;, &quot;Lựa chọn
+2&quot;]; } else if (type === 'fill-in-the-blank') { q.correctAnswer =
+&quot;&quot;; } else if (type === 'true-false') { q.correctAnswer = true; }
+else if (type === 'matching') { q.prompts = [&quot;Vế A1&quot;, &quot;Vế
+A2&quot;]; q.answers = [&quot;Vế B1&quot;, &quot;Vế B2&quot;]; }
+appState.hasUnsavedChanges = true; renderCreatorUI(); }<br>
+function creatorAddQuestion() { appState.creatorData.questions.push({ id:
+Date.now(), type: &quot;multiple-choice&quot;, question: &quot;&quot;, options:
+[&quot;Lựa chọn 1&quot;, &quot;Lựa chọn 2&quot;], correctAnswer: 0, points: 10,
+explanation: &quot;&quot;, imageUrl: &quot;&quot; });
+appState.hasUnsavedChanges = true; renderCreatorUI(); }<br>
+function removeCreatorQuestion(index) {
+appState.creatorData.questions.splice(index, 1); appState.hasUnsavedChanges =
+true; renderCreatorUI(); }<br>
+function addCreatorOption(qIndex) { if
+(!appState.creatorData.questions[qIndex].options) {
+appState.creatorData.questions[qIndex].options = []; }
+appState.creatorData.questions[qIndex].options.push(&quot;Lựa chọn mới&quot;);
+appState.hasUnsavedChanges = true; renderCreatorUI(); }<br>
+function removeCreatorOption(qIndex, oIndex) { appState.creatorData.questions[qIndex].options.splice(oIndex,
+1); appState.hasUnsavedChanges = true; renderCreatorUI(); }<br>
+function updateCreatorOption(qIndex, oIndex, value) {
+appState.creatorData.questions[qIndex].options[oIndex] = value;
+appState.hasUnsavedChanges = true; }<br>
+function updateCreatorCorrectAnswer(qIndex, oIndex) { const q =
+appState.creatorData.questions[qIndex]; if (q.type === 'multiple-selection') {
+if (!Array.isArray(q.correctAnswer)) q.correctAnswer = []; const pos =
+q.correctAnswer.indexOf(oIndex); if (pos === -1) {
+q.correctAnswer.push(oIndex); } else { q.correctAnswer.splice(pos, 1); } } else
+{ q.correctAnswer = oIndex; } appState.hasUnsavedChanges = true; }<br>
+function addCreatorMatchingPair(qIndex) { const q =
+appState.creatorData.questions[qIndex]; if (!q.prompts) q.prompts = []; if
+(!q.answers) q.answers = []; q.prompts.push(&quot;&quot;);
+q.answers.push(&quot;&quot;); appState.hasUnsavedChanges = true;
+renderCreatorUI(); }<br>
+function removeCreatorMatchingPair(qIndex, pIndex) { const q =
+appState.creatorData.questions[qIndex]; q.prompts.splice(pIndex, 1);
+q.answers.splice(pIndex, 1); appState.hasUnsavedChanges = true;
+renderCreatorUI(); }<br>
+function updateCreatorMatching(qIndex, pIndex, field, value) {
+appState.creatorData.questions[qIndex][field][pIndex] = value;
+appState.hasUnsavedChanges = true; }<br>
+function generateJsonAndSwitch() {
+appState.jsonEditor.setValue(JSON.stringify(appState.creatorData, null, 4));
+showStatus('editorStatus', '✅ Đã tạo JSON từ Xưởng Chế Tạo!', 'success');
+showTab('editor'); }<br>
+function startQuizFromCreator() { appState.currentQuizData =
+JSON.parse(JSON.stringify(appState.creatorData)); try {
+validateQuizData(appState.currentQuizData); appState.userAnswers = {};
+appState.hasUnsavedChanges = false; initializeQuiz(); showTab('quiz'); }
+catch(error) { showModal('modal', 'Lỗi Dữ Liệu', `Không thể bắt đầu:
+${error.message}`, () =&gt; {}); } }<br>
+<br>
+// --- JSON VALIDATION &amp; FILE HANDLING ---<br>
+function validateQuizData(data) { if (!data || typeof data !== 'object') throw
+new Error('Dữ liệu không phải là một đối tượng JSON.'); if (typeof data.title
+!== 'string') throw new Error('Thiếu hoặc sai định dạng &quot;title&quot;.');
+if (!data.config || typeof data.config !== 'object') throw new Error('Thiếu hoặc
+sai định dạng &quot;config&quot;.'); if (!Array.isArray(data.questions)) throw
+new Error('Thiếu hoặc sai định dạng &quot;questions&quot;.'); if
+(data.questions.length === 0) throw new Error('Danh sách &quot;questions&quot;
+không được rỗng.'); data.questions.forEach((q, index) =&gt; { if (!q.type ||
+!q.question) throw new Error(`Câu hỏi ${index + 1} thiếu type hoặc question.`);
+if (['multiple-choice', 'multiple-selection'].includes(q.type) &amp;&amp;
+!Array.isArray(q.options)) throw new Error(`Câu hỏi ${index + 1} thiếu
+&quot;options&quot;.`); if (q.type === 'matching' &amp;&amp;
+(!Array.isArray(q.prompts) || !Array.isArray(q.answers) || q.prompts.length !==
+q.answers.length)) throw new Error(`Câu hỏi ${index + 1} (Nối cột) có dữ liệu
+không hợp lệ.`); if (q.correctAnswer === undefined &amp;&amp; q.type !==
+'matching') throw new Error(`Câu hỏi ${index + 1} thiếu
+&quot;correctAnswer&quot;.`); if (!q.id) q.id = Date.now() + index; }); return
+true; }<br>
+function loadQuestionsFromJson() { try { const quizData =
+JSON.parse(appState.jsonEditor.getValue()); validateQuizData(quizData);
+appState.currentQuizData = quizData; appState.userAnswers = {};
+localStorage.setItem('quizJson', appState.jsonEditor.getValue());
+showStatus('editorStatus', `✅ Đã tải ${quizData.questions.length} câu hỏi!`,
+'success'); initializeQuiz(); showTab('quiz'); } catch (error) {
+showStatus('editorStatus', `❌ Lỗi JSON: ${error.message}`, 'error'); } }<br>
+function loadSampleQuestions() { const sampleData = { &quot;title&quot;:
+&quot;Hành Trình Khám Phá Vũ Trụ&quot;, &quot;config&quot;: {
+&quot;timeLimit&quot;: 600, &quot;shuffleQuestions&quot;: true,
+&quot;shuffleOptions&quot;: true, &quot;instantFeedback&quot;: false,
+&quot;singleQuestionMode&quot;: true, &quot;autoNextQuestion&quot;: true },
+&quot;questions&quot;: [ { &quot;id&quot;: 1, &quot;type&quot;:
+&quot;multiple-choice&quot;, &quot;question&quot;: &quot;Hành tinh nào được mệnh
+danh là 'Hành tinh Đỏ'?&quot;, &quot;imageUrl&quot;:
+&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/OSIRIS_Mars_true_color.jpg/800px-OSIRIS_Mars_true_color.jpg&quot;,
+&quot;options&quot;: [&quot;Sao Hỏa&quot;, &quot;Sao Kim&quot;, &quot;Sao Mộc&quot;,
+&quot;Sao Thổ&quot;], &quot;correctAnswer&quot;: 0, &quot;explanation&quot;:
+&quot;Sao Hỏa có bề mặt màu đỏ do oxit sắt.&quot;, &quot;points&quot;: 10 }, {
+&quot;id&quot;: 2, &quot;type&quot;: &quot;true-false&quot;,
+&quot;question&quot;: &quot;Mặt Trời là một hành tinh.&quot;,
+&quot;correctAnswer&quot;: false, &quot;explanation&quot;: &quot;Mặt Trời là một
+ngôi sao, không phải một hành tinh.&quot;, &quot;points&quot;: 5 }, {
+&quot;id&quot;: 3, &quot;type&quot;: &quot;multiple-selection&quot;,
+&quot;question&quot;: &quot;Chọn những hành tinh khí khổng lồ:&quot;,
+&quot;imageUrl&quot;: &quot;&quot;, &quot;options&quot;: [&quot;Sao Mộc&quot;,
+&quot;Sao Hỏa&quot;, &quot;Sao Thổ&quot;, &quot;Trái Đất&quot;],
+&quot;correctAnswer&quot;: [0, 2], &quot;explanation&quot;: &quot;Sao Mộc và
+Sao Thổ là các hành tinh khí khổng lồ.&quot;, &quot;points&quot;: 20 }, {
+&quot;id&quot;: 4, &quot;type&quot;: &quot;fill-in-the-blank&quot;,
+&quot;question&quot;: &quot;Thiên hà của chúng ta có tên là gì? (Tiếng
+Anh)&quot;, &quot;imageUrl&quot;: &quot;&quot;, &quot;correctAnswer&quot;:
+[&quot;Milky Way&quot;, &quot;The Milky Way&quot;], &quot;explanation&quot;:
+&quot;Thiên hà của chúng ta tên là Milky Way, hay còn gọi là Dải Ngân
+Hà.&quot;, &quot;points&quot;: 15 }, { &quot;id&quot;: 5, &quot;type&quot;:
+&quot;matching&quot;, &quot;question&quot;: &quot;Ghép các nhà thiên văn học với
+khám phá của họ.&quot;, &quot;prompts&quot;: [&quot;Người đầu tiên đi vào vũ trụ&quot;,
+&quot;Phát hiện ra các định luật chuyển động của hành tinh&quot;, &quot;Thuyết
+Nhật tâm&quot;], &quot;answers&quot;: [&quot;Yuri Gagarin&quot;, &quot;Johannes
+Kepler&quot;, &quot;Nicolaus Copernicus&quot;], &quot;explanation&quot;:
+&quot;Đây là những cột mốc quan trọng trong lịch sử thiên văn học.&quot;,
+&quot;points&quot;: 25 } ] }; appState.jsonEditor.setValue(JSON.stringify(sampleData,
+null, 4)); }<br>
+function copyJson() {
+navigator.clipboard.writeText(appState.jsonEditor.getValue()).then(() =&gt;
+showStatus('editorStatus', '✅ Đã sao chép!', 'success')); }<br>
+function confirmClearEditor() { showModal('modal', 'Xác nhận xóa', 'Bạn có chắc
+muốn xóa toàn bộ nội dung trong trình soạn thảo?', () =&gt; {
+appState.jsonEditor.setValue(''); localStorage.removeItem('quizJson'); }); }<br>
+function exportJsonToFile() { try { const jsonString =
+appState.jsonEditor.getValue(); JSON.parse(jsonString); const title =
+(JSON.parse(jsonString)?.title || 'quiz').replace(/[^a-z0-9]/gi,
+'_').toLowerCase(); const blob = new Blob([jsonString], { type:
+'application/json' }); const a = document.createElement('a'); a.href =
+URL.createObjectURL(blob); a.download = `${title}.json`; a.click();
+URL.revokeObjectURL(a.href); showStatus('editorStatus', '✅ Đã export thành
+công!', 'success'); } catch (error) { showStatus('editorStatus', `❌ Không thể
+export: JSON không hợp lệ.`, 'error'); } }<br>
+function importJsonFromFile(event) { const file = event.target.files[0]; if
+(!file) return; processImportedFile(file); }<br>
+function handleFileDrop(event) { if (event.dataTransfer.files &amp;&amp;
+event.dataTransfer.files[0]) { const file = event.dataTransfer.files[0]; if
+(file.type === &quot;application/json&quot;) { processImportedFile(file); }
+else { showStatus('editorStatus', '❌ Lỗi: Vui lòng chỉ thả file .json.',
+'error'); } } }<br>
+function processImportedFile(file) { const reader = new FileReader();
+reader.onload = e =&gt; { try { const importedData = JSON.parse(e.target.result);
+validateQuizData(importedData);
+appState.jsonEditor.setValue(JSON.stringify(importedData, null, 4));
+showStatus('editorStatus', `✅ Đã import ${file.name}!`, 'success'); } catch
+(error) { showStatus('editorStatus', `❌ File JSON không hợp lệ:
+${error.message}`, 'error'); } }; reader.readAsText(file); const fileInput =
+document.getElementById('fileInput'); if (fileInput) fileInput.value = ''; }<br>
+<br>
+// --- QUIZ LOGIC ---<br>
+function initializeQuiz() { const savedProgress = sessionStorage.getItem('quizProgress');
+if (savedProgress) { showModal( 'modal', 'Tiếp tục bài làm?', 'Chúng tôi tìm thấy
+một bài làm đang dang dở. Bạn có muốn tiếp tục không?', () =&gt; {
+loadQuizProgress(); }, () =&gt; { startNewQuiz(); } ); } else { startNewQuiz();
+} }<br>
+function startNewQuiz() { clearQuizProgress(); const { config, questions } =
+appState.currentQuizData; appState.quizStartTime = new Date();
+appState.isPaused = false; appState.userAnswers = {};
+appState.currentQuestionIndex = 0; appState.shuffledQuestions = config.shuffleQuestions
+? shuffleArray(questions) : [...questions]; appState.shuffledOptions = {};
+appState.currentStreak = 0; appState.longestStreak = 0; renderQuizUI(); if
+(config.timeLimit &gt; 0) startTimer(config.timeLimit); }<br>
+function renderQuizUI() { const { config } = appState.currentQuizData; if
+(config.singleQuestionMode) { renderQuizSingleView(); } else {
+renderQuizListView(); } }<br>
+function renderQuizListView() { const quizContent =
+document.getElementById('quizContent'); const { title, config } = appState.currentQuizData;
+const questionsHtml = appState.shuffledQuestions.map((q, index) =&gt; { return
+generateQuestionCardHtml(q, index); }).join(''); quizContent.innerHTML = `
+&lt;div class=&quot;quiz-header&quot;&gt; &lt;h2&gt;${title || 'Đề
+thi'}&lt;/h2&gt; ${config.timeLimit &gt; 0 ? `&lt;p&gt;⏰ Thời gian: &lt;b
+id=&quot;timer&quot;&gt;${formatTime(appState.timeLeft ||
+config.timeLimit)}&lt;/b&gt;&lt;/p&gt;` : ''} &lt;div
+class=&quot;progress-bar&quot;&gt;&lt;div id=&quot;progressBarInner&quot;
+class=&quot;progress-bar-inner&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;/div&gt;
+&lt;div id=&quot;questions-list-container&quot;&gt;${questionsHtml}&lt;/div&gt;
+&lt;div class=&quot;quiz-button-container button-group&quot;
+style=&quot;margin-top: 0;&quot;&gt; ${config.timeLimit &gt; 0 ? `&lt;button
+class=&quot;button warning&quot; id=&quot;pauseBtn&quot;
+onclick=&quot;pauseQuiz()&quot;&gt;&lt;i class=&quot;fa-solid fa-pause&quot;&gt;&lt;/i&gt;
+Tạm Dừng&lt;/button&gt;` : ''} &lt;button class=&quot;button secondary&quot;
+id=&quot;submitBtn&quot; onclick=&quot;confirmSubmitQuiz()&quot;&gt;&lt;i
+class=&quot;fa-solid fa-flag-checkered&quot;&gt;&lt;/i&gt; Nộp
+Bài&lt;/button&gt; &lt;/div&gt;`; const listContainer =
+document.getElementById('questions-list-container');
+listContainer.addEventListener('change', handleQuizAnswer); listContainer.addEventListener('input',
+handleQuizAnswer); updateProgress(); restoreUserInputs(); }<br>
+function renderQuizSingleView() { const quizContent =
+document.getElementById('quizContent'); const { title, config } =
+appState.currentQuizData; const q = appState.shuffledQuestions[appState.currentQuestionIndex];
+const questionHtml = generateQuestionCardHtml(q,
+appState.currentQuestionIndex); const navDotsHtml =
+appState.shuffledQuestions.map((_, index) =&gt; `&lt;div class=&quot;nav-dot
+${index === appState.currentQuestionIndex ? 'current' : ''}
+${appState.userAnswers[appState.shuffledQuestions[index].id] !== undefined ?
+'answered' : ''}&quot; onclick=&quot;goToQuestion(${index})&quot;&gt;${index +
+1}&lt;/div&gt;` ).join(''); quizContent.innerHTML = ` &lt;div
+class=&quot;quiz-header&quot;&gt; &lt;h2&gt;${title || 'Đề thi'}&lt;/h2&gt;
+${config.timeLimit &gt; 0 ? `&lt;p&gt;⏰ Thời gian: &lt;b
+id=&quot;timer&quot;&gt;${formatTime(appState.timeLeft ||
+config.timeLimit)}&lt;/b&gt;&lt;/p&gt;` : ''} &lt;div
+class=&quot;progress-bar&quot;&gt;&lt;div id=&quot;progressBarInner&quot;
+class=&quot;progress-bar-inner&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;/div&gt;
+&lt;div id=&quot;single-question-view&quot;&gt; &lt;div
+id=&quot;sq-question-container&quot;&gt;${questionHtml}&lt;/div&gt; &lt;div
+id=&quot;sq-navigation&quot;&gt; &lt;button class=&quot;button&quot;
+onclick=&quot;prevQuestion()&quot; ${appState.currentQuestionIndex === 0 ?
+'disabled' : ''}&gt;&lt;i class=&quot;fa-solid
+fa-arrow-left&quot;&gt;&lt;/i&gt; Trước&lt;/button&gt; &lt;div id=&quot;sq-nav-dots&quot;&gt;${navDotsHtml}&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;`; const questionContainer =
+document.getElementById('sq-question-container');
+questionContainer.addEventListener('change', handleQuizAnswer);
+questionContainer.addEventListener('input', handleQuizAnswer); if (q.type ===
+'fill-in-the-blank') { const inputEl =
+questionContainer.querySelector(`input[data-question-id=&quot;${q.id}&quot;]`);
+if (inputEl) { inputEl.addEventListener('keydown', (e) =&gt; { if (e.key ===
+'Enter') { e.preventDefault(); handleAutoNext(); } }); } } updateProgress();
+restoreUserInputs(); }<br>
+<br>
+function generateQuestionCardHtml(q, index) {<br>
+   let optionsHtml = '';<br>
+   const { config } = appState.currentQuizData;<br>
+<br>
+   if (q.type === 'multiple-choice' || q.type === 'multiple-selection') {<br>
+       if (!appState.shuffledOptions[q.id]) {<br>
+           let options = q.options.map((opt, i) =&gt; ({ text: opt,
+originalIndex: i }));<br>
+           appState.shuffledOptions[q.id] = config.shuffleOptions ?
+shuffleArray(options) : options;<br>
+       }<br>
+       const currentShuffledOptions = appState.shuffledOptions[q.id];<br>
+       optionsHtml = currentShuffledOptions.map((opt, i) =&gt; {<br>
+           const inputType = q.type === 'multiple-choice' ? 'radio' :
+'checkbox';<br>
+           const inputId = `q${q.id}_opt${i}`;<br>
+           return `&lt;li class=&quot;option&quot;&gt;&lt;input
+type=&quot;${inputType}&quot; id=&quot;${inputId}&quot;
+name=&quot;q_${q.id}&quot; value=&quot;${opt.originalIndex}&quot;
+data-question-id=&quot;${q.id}&quot;&gt;&lt;label
+for=&quot;${inputId}&quot;&gt;${opt.text}&lt;/label&gt;&lt;/li&gt;`;<br>
+       }).join('');<br>
+   } else if (q.type === 'true-false') {<br>
+       optionsHtml = `<br>
+           &lt;li class=&quot;option&quot;&gt;&lt;input type=&quot;radio&quot;
+id=&quot;q${q.id}_opt_true&quot; name=&quot;q_${q.id}&quot;
+value=&quot;true&quot; data-question-id=&quot;${q.id}&quot;&gt;&lt;label
+for=&quot;q${q.id}_opt_true&quot;&gt;Đúng&lt;/label&gt;&lt;/li&gt;<br>
+           &lt;li class=&quot;option&quot;&gt;&lt;input type=&quot;radio&quot;
+id=&quot;q${q.id}_opt_false&quot; name=&quot;q_${q.id}&quot;
+value=&quot;false&quot; data-question-id=&quot;${q.id}&quot;&gt;&lt;label
+for=&quot;q${q.id}_opt_false&quot;&gt;Sai&lt;/label&gt;&lt;/li&gt;<br>
+       `;<br>
+   } else if (q.type === 'fill-in-the-blank') {<br>
+       optionsHtml = `&lt;div class=&quot;form-group&quot;&gt;&lt;input
+type=&quot;text&quot; placeholder=&quot;Nhập câu trả lời của bạn...&quot;
+data-question-id=&quot;${q.id}&quot;&gt;&lt;/div&gt;`;<br>
+   } else if (q.type === 'matching') {<br>
+       if (!appState.shuffledOptions[q.id]) {<br>
+           let answers = q.answers.map((ans, i) =&gt; ({ text: ans,
+originalIndex: i }));<br>
+           appState.shuffledOptions[q.id] = config.shuffleOptions ?
+shuffleArray(answers) : answers;<br>
+       }<br>
+       const shuffledAnswers = appState.shuffledOptions[q.id];<br>
+       optionsHtml = `<br>
+           &lt;div class=&quot;matching-grid&quot;&gt;<br>
+               ${q.prompts.map((prompt, pIndex) =&gt; `<br>
+                   &lt;div class=&quot;matching-item&quot;&gt;<br>
+                       &lt;p&gt;${prompt}&lt;/p&gt;<br>
+                       &lt;i class=&quot;fa-solid
+fa-arrows-left-right&quot;&gt;&lt;/i&gt;<br>
+                       &lt;select data-question-id=&quot;${q.id}&quot;
+data-prompt-index=&quot;${pIndex}&quot;&gt;<br>
+                           &lt;option value=&quot;&quot;&gt;Chọn đáp
+án...&lt;/option&gt;<br>
+                           ${shuffledAnswers.map((ans, aIndex) =&gt;
+`&lt;option
+value=&quot;${ans.originalIndex}&quot;&gt;${ans.text}&lt;/option&gt;`).join('')}<br>
+                       &lt;/select&gt;<br>
+                   &lt;/div&gt;<br>
+               `).join('')}<br>
+           &lt;/div&gt;<br>
+       `;<br>
+   }<br>
+<br>
+   let cardNavHtml = '';<br>
+   if (config.singleQuestionMode) {<br>
+       const isLastQuestion = index === appState.shuffledQuestions.length - 1;<br>
+       if (isLastQuestion) {<br>
+           cardNavHtml = `&lt;div class=&quot;sq-card-nav&quot;&gt; &lt;button
+class=&quot;button secondary&quot; id=&quot;submitBtn&quot;
+onclick=&quot;confirmSubmitQuiz()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-flag-checkered&quot;&gt;&lt;/i&gt; Nộp Bài&lt;/button&gt; &lt;/div&gt;`;<br>
+       } else {<br>
+           cardNavHtml = `&lt;div class=&quot;sq-card-nav&quot;&gt; &lt;button
+class=&quot;button&quot; onclick=&quot;nextQuestion()&quot;&gt;&lt;i
+class=&quot;fa-solid fa-arrow-right&quot;&gt;&lt;/i&gt; Tiếp&lt;/button&gt;
+&lt;/div&gt;`;<br>
+       }<br>
+   }<br>
+   return `&lt;div class=&quot;question-card&quot; id=&quot;card_${q.id}&quot;
+style=&quot;animation-delay: 50ms&quot;&gt; &lt;p&gt;&lt;strong&gt;Câu ${index
++ 1}:&lt;/strong&gt;&lt;/p&gt; &lt;div class=&quot;question-text&quot;&gt;${q.question}&lt;/div&gt;
+${q.imageUrl ? `&lt;img src=&quot;${q.imageUrl}&quot; alt=&quot;Hình ảnh câu hỏi&quot;
+class=&quot;question-image&quot; loading=&quot;lazy&quot;
+onerror=&quot;this.style.display='none'&quot;&gt;` : ''} &lt;div
+class=&quot;options&quot;&gt;${optionsHtml}&lt;/div&gt; &lt;div
+class=&quot;instant-explanation&quot; id=&quot;exp_${q.id}&quot;&gt;${q.explanation
+|| ''}&lt;/div&gt; ${cardNavHtml} &lt;/div&gt;`;<br>
+}<br>
+<br>
+function restoreUserInputs() {<br>
+   Object.keys(appState.userAnswers).forEach(questionId =&gt; {<br>
+       const answer = appState.userAnswers[questionId];<br>
+       const q = appState.shuffledQuestions.find(q =&gt; q.id == questionId);<br>
+       if (!q) return;<br>
+<br>
+       if (q.type === 'multiple-selection') {<br>
+           answer.forEach(val =&gt; { const input =
+document.querySelector(`input[data-question-id=&quot;${questionId}&quot;][value=&quot;${val}&quot;]`);
+if (input) input.checked = true; });<br>
+       } else if (q.type === 'multiple-choice') {<br>
+           const input =
+document.querySelector(`input[data-question-id=&quot;${questionId}&quot;][value=&quot;${answer}&quot;]`);
+if (input) input.checked = true;<br>
+       } else if (q.type === 'true-false') {<br>
+           const input =
+document.querySelector(`input[data-question-id=&quot;${questionId}&quot;][value=&quot;${answer}&quot;]`);
+if (input) input.checked = true;<br>
+       } else if (q.type === 'fill-in-the-blank') {<br>
+           const input = document.querySelector(`input[data-question-id=&quot;${questionId}&quot;]`);
+if (input) input.value = answer;<br>
+       } else if (q.type === 'matching') {<br>
+           answer.forEach((ans, index) =&gt; {<br>
+               const select =
+document.querySelector(`select[data-question-id=&quot;${questionId}&quot;][data-prompt-index=&quot;${index}&quot;]`);<br>
+               if (select) select.value = ans;<br>
+           });<br>
+       }<br>
+   });<br>
+}<br>
+function goToQuestion(index) { if (index &gt;= 0 &amp;&amp; index &lt;
+appState.shuffledQuestions.length) { appState.currentQuestionIndex = index;
+renderQuizSingleView(); } }<br>
+function nextQuestion() { goToQuestion(appState.currentQuestionIndex + 1); }<br>
+function prevQuestion() { goToQuestion(appState.currentQuestionIndex - 1); }<br>
+<br>
+function handleQuizAnswer(event) {<br>
+   const input = event.target;<br>
+   const questionId = input.dataset.questionId;<br>
+   if (questionId === undefined) return;<br>
+   <br>
+   const card = document.getElementById(`card_${questionId}`);<br>
+   if (card &amp;&amp; card.classList.contains('answered')) return;<br>
+<br>
+   const q = appState.currentQuizData.questions.find(q =&gt; q.id == questionId);<br>
+   if (!q) return;<br>
+<br>
+   if (q.type === 'multiple-selection') {<br>
+       if (!appState.userAnswers[q.id] ||
+!Array.isArray(appState.userAnswers[q.id])) { appState.userAnswers[q.id] = [];
+}<br>
+       const value = parseInt(input.value);<br>
+       if (input.checked) { appState.userAnswers[q.id].push(value); } else {
+appState.userAnswers[q.id] = appState.userAnswers[q.id].filter(v =&gt; v !==
+value); }<br>
+       if(appState.userAnswers[q.id].length === 0) delete
+appState.userAnswers[q.id];<br>
+   } else if (q.type === 'multiple-choice') {<br>
+       appState.userAnswers[q.id] = parseInt(input.value);<br>
+   } else if (q.type === 'true-false') {<br>
+       appState.userAnswers[q.id] = (input.value === 'true');<br>
+   } else if (q.type === 'fill-in-the-blank') {<br>
+       if (input.value.trim()) { appState.userAnswers[q.id] = input.value; }
+else { delete appState.userAnswers[q.id]; }<br>
+   } else if (q.type === 'matching') {<br>
+       const selects =
+document.querySelectorAll(`select[data-question-id=&quot;${q.id}&quot;]`);<br>
+       const answers = Array.from(selects).map(s =&gt; s.value);<br>
+       if(answers.every(a =&gt; a !== '')) {<br>
+           appState.userAnswers[q.id] = answers.map(a =&gt; parseInt(a));<br>
+       } else {<br>
+           delete appState.userAnswers[q.id];<br>
+       }<br>
+   }<br>
+<br>
+   if (appState.currentQuizData.config.instantFeedback) {<br>
+       checkAnswerInstantly(q, input);<br>
+   }<br>
+   updateProgress();<br>
+   saveQuizProgress();<br>
+   <br>
+   const allAnswered = Object.keys(appState.userAnswers).length ===
+appState.shuffledQuestions.length;<br>
+   const { config } = appState.currentQuizData;<br>
+<br>
+   if (config.singleQuestionMode &amp;&amp; config.autoNextQuestion &amp;&amp;
+allAnswered) {<br>
+       setTimeout(() =&gt; {<br>
+           if (document.getElementById('quiz').classList.contains('active')) {<br>
+                submitQuiz();<br>
+           }<br>
+       }, 800);<br>
+   } else if (['multiple-choice', 'true-false'].includes(q.type)) {<br>
+       handleAutoNext();<br>
+   }<br>
+}<br>
+<br>
+function handleAutoNext() { const { config } = appState.currentQuizData; if
+(!config.autoNextQuestion || !config.singleQuestionMode) return; if
+(appState.currentQuestionIndex &lt; appState.shuffledQuestions.length - 1) {
+setTimeout(() =&gt; { nextQuestion(); }, 400); } else { const submitBtn =
+document.getElementById('submitBtn'); if (submitBtn) {
+submitBtn.style.boxShadow = '0 0 25px var(--secondary-glow)'; setTimeout(() =&gt;
+{ if (submitBtn) submitBtn.style.boxShadow = ''; }, 1200); } } }<br>
+<br>
+function checkAnswerInstantly(question, inputElement) {<br>
+   const card = document.getElementById(`card_${question.id}`);<br>
+   if (!card || card.classList.contains('answered')) return;<br>
+   let isCorrect = false;<br>
+   const userAnswer = appState.userAnswers[question.id];<br>
+   if (question.type === 'multiple-choice' || question.type === 'true-false') {
+isCorrect = userAnswer === question.correctAnswer; } else if (question.type ===
+'fill-in-the-blank') { const trimmedUserAnswer = (userAnswer ||
+'').trim().toLowerCase(); if (Array.isArray(question.correctAnswer)) {
+isCorrect = question.correctAnswer.some(ans =&gt; ans.toLowerCase() ===
+trimmedUserAnswer); } else { isCorrect = trimmedUserAnswer === String(question.correctAnswer).toLowerCase();
+} } else if (question.type === 'multiple-selection' || question.type ===
+'matching') { return; }<br>
+   if (isCorrect) { appState.currentStreak++; if (appState.currentStreak &gt;
+appState.longestStreak) { appState.longestStreak = appState.currentStreak; } if
+(appState.currentStreak &gt;= 3) {
+showStreakNotification(appState.currentStreak); } if (appState.currentStreak
+=== 10) { unlockAchievement('STREAK_MASTER'); } } else { appState.currentStreak
+= 0; }<br>
+   card.classList.add('answered'); const explanationEl =
+card.querySelector('.instant-explanation'); if (question.type ===
+'multiple-choice' || question.type === 'true-false') { const correctValue =
+question.type === 'true-false' ? String(question.correctAnswer) :
+appState.shuffledOptions[question.id].findIndex(opt =&gt; opt.originalIndex ===
+question.correctAnswer); const userValue = inputElement.value; const
+correctLabel =
+card.querySelector(`label[for=&quot;${inputElement.id.replace(userValue,
+correctValue)}&quot;]`); const userLabel = card.querySelector(`label[for=&quot;${inputElement.id}&quot;]`);
+if (isCorrect) { if(userLabel) userLabel.classList.add('instant-correct'); }
+else { if(userLabel) userLabel.classList.add('instant-incorrect');
+if(correctLabel) correctLabel.classList.add('instant-correct'); } } else if
+(question.type === 'fill-in-the-blank') { inputElement.classList.add(isCorrect
+? 'instant-correct' : 'instant-incorrect'); inputElement.style.borderColor =
+isCorrect ? 'var(--success-glow)' : 'var(--danger-glow)'; } if (explanationEl
+&amp;&amp; question.explanation) { explanationEl.style.display = 'block'; }<br>
+}<br>
+<br>
+function updateProgress() { const total = appState.shuffledQuestions.length;
+const answered = Object.keys(appState.userAnswers).length; const progressBar =
+document.getElementById('progressBarInner'); if (progressBar) {
+progressBar.style.width = `${(answered / total) * 100}%`; } }<br>
+<br>
+// --- TIMER &amp; PAUSE LOGIC ---<br>
+function startTimer(seconds) { if (appState.quizTimer)
+clearInterval(appState.quizTimer); appState.timeLeft = seconds; const timerEl =
+document.getElementById('timer'); if (timerEl) timerEl.textContent =
+formatTime(appState.timeLeft); appState.quizTimer = setInterval(() =&gt; { if
+(appState.isPaused) return; appState.timeLeft--; if (timerEl)
+timerEl.textContent = formatTime(appState.timeLeft); if (appState.timeLeft
+&lt;= 0) { clearInterval(appState.quizTimer); submitQuiz(); } }, 1000); }<br>
+function pauseQuiz() { appState.isPaused = true;
+document.getElementById('pause-overlay').style.display = 'flex'; }<br>
+function resumeQuiz() { appState.isPaused = false;
+document.getElementById('pause-overlay').style.display = 'none'; }<br>
+function confirmSubmitQuiz() { const unanswered =
+appState.shuffledQuestions.length - Object.keys(appState.userAnswers).length;
+const message = unanswered &gt; 0 ? `Bạn còn ${unanswered} câu chưa trả lời. Bạn
+có chắc muốn nộp bài?` : 'Bạn có chắc chắn muốn nộp bài?'; showModal('modal',
+'Xác nhận nộp bài', message, submitQuiz); }<br>
+<br>
+function submitQuiz() {<br>
+   if (appState.quizTimer) clearInterval(appState.quizTimer);<br>
+   const quizContent = document.getElementById('quizContent');<br>
+   quizContent.innerHTML = `&lt;div style=&quot;display: flex; flex-direction:
+column; justify-content: center; align-items: center; height: 100%; text-align:
+center;&quot;&gt;&lt;div class=&quot;loader&quot;&gt;&lt;/div&gt;&lt;p
+style=&quot;margin-top: 20px; font-size: 1.2em;&quot;&gt;Đang chấm bài, vui
+lòng chờ...&lt;/p&gt;&lt;/div&gt;`;<br>
+<br>
+   setTimeout(() =&gt; {<br>
+       appState.quizEndTime = new Date();<br>
+       let userScore = 0, totalScore = 0, correctCount = 0;<br>
+       const originalQuestions = appState.currentQuizData.questions;<br>
+<br>
+       originalQuestions.forEach(q =&gt; {<br>
+           const userAnswer = appState.userAnswers[q.id];<br>
+           totalScore += (q.points || 10);<br>
+           let isCorrect = false;<br>
+           if (userAnswer !== undefined) {<br>
+               if (q.type === 'multiple-choice' || q.type === 'true-false')
+isCorrect = userAnswer === q.correctAnswer;<br>
+               else if (q.type === 'multiple-selection') isCorrect =
+arraysEqual(userAnswer, q.correctAnswer);<br>
+               else if (q.type === 'fill-in-the-blank') { const trimmedUserAnswer
+= (userAnswer || '').trim().toLowerCase(); if (Array.isArray(q.correctAnswer))
+{ isCorrect = q.correctAnswer.some(ans =&gt; ans.toLowerCase() ===
+trimmedUserAnswer); } else { isCorrect = trimmedUserAnswer ===
+String(q.correctAnswer).toLowerCase(); } }<br>
+               else if (q.type === 'matching') { isCorrect =
+userAnswer.every((ans, index) =&gt; ans === index); }<br>
+           }<br>
+           if (isCorrect) { userScore += (q.points || 10); correctCount++; }<br>
+           if (!appState.currentQuizData.config.instantFeedback) { if
+(isCorrect) { appState.currentStreak++; if (appState.currentStreak &gt;
+appState.longestStreak) { appState.longestStreak = appState.currentStreak; } }
+else { appState.currentStreak = 0; } }<br>
+       });<br>
+<br>
+       let xpGained = 0; const XP_PER_CORRECT_ANSWER = 50; xpGained +=
+correctCount * XP_PER_CORRECT_ANSWER; xpGained += 100; const accuracyPercentage
+= totalScore &gt; 0 ? (userScore / totalScore) * 100 : 0; if
+(accuracyPercentage &gt;= 80) xpGained += 200; if (accuracyPercentage === 100)
+xpGained += 500; updateXP(xpGained);<br>
+       const resultData = { userScore, totalScore, correctCount, xpGained,
+quizData: appState.currentQuizData, userAnswers: appState.userAnswers,
+shuffledOptions: appState.shuffledOptions, startTime: appState.quizStartTime,
+endTime: appState.quizEndTime, timestamp: Date.now() };<br>
+       saveHistory(resultData);<br>
+       clearQuizProgress();<br>
+       renderResultsAndReview(resultData);<br>
+       unlockAchievement('FIRST_FLIGHT');<br>
+       if (appState.quizHistory.length &gt;= 5) { unlockAchievement('CONSISTENT');
+}<br>
+       if (accuracyPercentage === 100) { unlockAchievement('PERFECTIONIST'); }<br>
+       const timeTaken = (new Date(appState.quizEndTime) - new
+Date(appState.quizStartTime)) / 1000;<br>
+       if (appState.currentQuizData.config.timeLimit &gt; 0 &amp;&amp;
+timeTaken &lt; appState.currentQuizData.config.timeLimit / 2) {
+unlockAchievement('LIGHT_SPEED'); }<br>
+       if (appState.longestStreak &gt;= 10) {
+unlockAchievement('STREAK_MASTER'); }<br>
+   }, 100);<br>
+}<br>
+<br>
+// --- RESULTS &amp; REVIEW ---<br>
+function renderResultsAndReview(resultData) {<br>
+   const { userScore, totalScore, correctCount, xpGained, quizData, userAnswers
+} = resultData;<br>
+   const percentage = totalScore &gt; 0 ? Math.round((userScore / totalScore) *
+100) : 0;<br>
+   let status = { class: 'success', icon: '&#127942;', text: 'Xuất sắc!' };<br>
+   if (percentage &lt; 50) status = { class: 'error', icon: '&#129489;‍&#128640;',
+text: 'Cần cố gắng thêm!' };<br>
+   else if (percentage &lt; 80) status = { class: 'warning', icon: '&#128077;',
+text: 'Làm tốt lắm!' };<br>
+   else launchConfetti();<br>
+   const timeTakenInSeconds = Math.round((new Date(resultData.endTime) - new
+Date(resultData.startTime)) / 1000);<br>
+<br>
+   const reviewHtml = quizData.questions.map((q, index) =&gt; {<br>
+       const userAnswer = userAnswers[q.id];<br>
+       let isCorrect = false;<br>
+       let reviewOptionsHtml = '';<br>
+<br>
+       if (userAnswer !== undefined) {<br>
+           if (q.type === 'multiple-choice' || q.type === 'true-false')
+isCorrect = userAnswer === q.correctAnswer;<br>
+           else if (q.type === 'multiple-selection') isCorrect =
+arraysEqual(userAnswer, q.correctAnswer);<br>
+           else if (q.type === 'fill-in-the-blank') { const trimmedUserAnswer =
+(userAnswer || '').trim().toLowerCase(); if (Array.isArray(q.correctAnswer)) {
+isCorrect = q.correctAnswer.some(ans =&gt; ans.toLowerCase() ===
+trimmedUserAnswer); } else { isCorrect = trimmedUserAnswer ===
+String(q.correctAnswer).toLowerCase(); } }<br>
+           else if (q.type === 'matching') isCorrect = userAnswer.every((ans,
+i) =&gt; ans === i);<br>
+       }<br>
+<br>
+       if (q.type === 'multiple-choice' || q.type === 'multiple-selection') {<br>
+           reviewOptionsHtml = q.options.map((opt, i) =&gt; { const
+isCorrectAnswer = Array.isArray(q.correctAnswer) ? q.correctAnswer.includes(i)
+: q.correctAnswer === i; const isUserAnswer = Array.isArray(userAnswer) ?
+userAnswer.includes(i) : userAnswer === i; let className = 'review-option'; if
+(isCorrectAnswer) className += ' correct-answer'; if (isUserAnswer &amp;&amp;
+!isCorrectAnswer) className += ' user-answer incorrect'; else if (isUserAnswer)
+className += ' user-answer'; return `&lt;li class=&quot;${className}&quot;&gt;${opt}&lt;/li&gt;`;
+}).join('');<br>
+       } else if (q.type === 'true-false') {<br>
+           reviewOptionsHtml = `&lt;li class=&quot;review-option
+${q.correctAnswer ? 'correct-answer' : ''} ${userAnswer === true ?
+'user-answer' : ''} ${userAnswer === true &amp;&amp; !q.correctAnswer ?
+'incorrect' : ''}&quot;&gt;Đúng&lt;/li&gt;&lt;li class=&quot;review-option
+${!q.correctAnswer ? 'correct-answer' : ''} ${userAnswer === false ?
+'user-answer' : ''} ${userAnswer === false &amp;&amp; q.correctAnswer ?
+'incorrect' : ''}&quot;&gt;Sai&lt;/li&gt;`;<br>
+       } else if (q.type === 'fill-in-the-blank') {<br>
+           const correctAnswerText = Array.isArray(q.correctAnswer) ?
+q.correctAnswer.join(' hoặc ') : q.correctAnswer;<br>
+           reviewOptionsHtml = `&lt;li class=&quot;review-option user-answer
+${!isCorrect ? 'incorrect' : ''}&quot;&gt;Câu trả lời của bạn:
+&lt;strong&gt;${userAnswer || '&lt;em&gt;(chưa trả lời)&lt;/em&gt;'}&lt;/strong&gt;&lt;/li&gt;&lt;li
+class=&quot;review-option correct-answer&quot;&gt;Đáp án đúng:
+&lt;strong&gt;${correctAnswerText}&lt;/strong&gt;&lt;/li&gt;`;<br>
+       } else if (q.type === 'matching') {<br>
+           reviewOptionsHtml = q.prompts.map((prompt, i) =&gt; { const
+userAnsIndex = userAnswer ? userAnswer[i] : -1; const userAnsText =
+userAnsIndex &gt; -1 ? q.answers[userAnsIndex] : '&lt;em&gt;(chưa trả lời)&lt;/em&gt;';
+const correctAnsText = q.answers[i]; const isPairCorrect = userAnsIndex === i;
+return `&lt;li class=&quot;review-option ${isPairCorrect ? 'correct-answer' :
+'user-answer incorrect'}&quot;&gt;${prompt} &lt;i class=&quot;fa-solid
+fa-arrow-right&quot;&gt;&lt;/i&gt; ${userAnsText} ${!isPairCorrect ? `(Đúng:
+${correctAnsText})` : ''}&lt;/li&gt;`; }).join('');<br>
+       }<br>
+<br>
+       return `&lt;div class=&quot;review-question ${isCorrect ? 'correct' :
+'incorrect'}&quot;&gt;&lt;p&gt;&lt;strong&gt;Câu ${index + 1}:&lt;/strong&gt;
+${q.question}&lt;/p&gt;${q.imageUrl ? `&lt;img src=&quot;${q.imageUrl}&quot;
+alt=&quot;Hình ảnh câu hỏi&quot; class=&quot;question-image&quot;
+loading=&quot;lazy&quot; onerror=&quot;this.style.display='none'&quot;&gt;` :
+''}&lt;ul&gt;${reviewOptionsHtml}&lt;/ul&gt;${q.explanation ? `&lt;div
+class=&quot;explanation-box&quot;&gt;${q.explanation}&lt;/div&gt;` :
+''}&lt;/div&gt;`;<br>
+   }).join('');<br>
+<br>
+   const quizContent = document.getElementById('quizContent');<br>
+   quizContent.innerHTML = `&lt;style&gt;.results{text-align:center}.score{font-size:2.5em;font-weight:700;margin:10px
+0;background:linear-gradient(45deg,var(--primary-glow),var(--secondary-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;max-width:500px;margin:20px
+auto;text-align:center}.stat-item{background:rgba(0,0,0,.2);padding:15px;border-radius:8px}.stat-item
+h4{margin-bottom:5px;color:var(--primary-glow)}.review-section{margin-top:30px;text-align:left}.review-question{background:rgba(0,0,0,.2);padding:15px;border-radius:8px;margin-bottom:15px;border-left:4px
+solid}.review-question.correct{border-left-color:var(--success-glow)}.review-question.incorrect{border-left-color:var(--danger-glow)}.review-question
+ul{list-style-type:none;padding-left:0;margin-top:10px}.review-option{padding:8px;border-radius:4px;margin-bottom:5px}.review-option.correct-answer{background:rgba(0,255,170,.2);color:var(--success-glow);font-weight:700}.review-option.user-answer.incorrect{background:rgba(255,77,77,.2);text-decoration:line-through}.explanation-box{background:rgba(255,238,0,.1);border:1px
+solid
+var(--warning-glow);color:var(--warning-glow);padding:10px;border-radius:5px;margin-top:10px}&lt;/style&gt;&lt;div
+id=&quot;questions-list-container&quot;
+style=&quot;overflow-y:auto;flex-grow:1;padding:20px&quot;&gt;&lt;div
+class=&quot;results&quot;&gt;&lt;h2&gt;${status.icon} Kết Quả&lt;/h2&gt;&lt;div
+class=&quot;score&quot; id=&quot;finalScore&quot;&gt;0 / ${totalScore} điểm&lt;/div&gt;&lt;div
+class=&quot;status-message ${status.class}&quot;&gt;${status.text}
+(${percentage}%)&lt;/div&gt;&lt;div class=&quot;stats-grid&quot;&gt;&lt;div
+class=&quot;stat-item&quot;&gt;&lt;h4&gt;&lt;i class=&quot;fa-solid
+fa-check&quot;&gt;&lt;/i&gt; Đúng&lt;/h4&gt;&lt;p&gt;${correctCount} /
+${quizData.questions.length}&lt;/p&gt;&lt;/div&gt;&lt;div
+class=&quot;stat-item&quot;&gt;&lt;h4&gt;&lt;i class=&quot;fa-solid
+fa-clock&quot;&gt;&lt;/i&gt; Thời gian&lt;/h4&gt;&lt;p&gt;${formatTime(timeTakenInSeconds)}&lt;/p&gt;&lt;/div&gt;&lt;div
+class=&quot;stat-item&quot;
+style=&quot;grid-column:1/-1;background:rgba(0,255,170,.1)&quot;&gt;&lt;h4&gt;&lt;i
+class=&quot;fa-solid fa-star&quot;&gt;&lt;/i&gt; XP Nhận Được&lt;/h4&gt;&lt;p
+style=&quot;font-size:1.2em;color:var(--success-glow);font-weight:700&quot;&gt;+${xpGained}
+XP&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div
+class=&quot;button-group&quot;&gt;&lt;button class=&quot;button&quot;
+onclick=&quot;resetQuiz()&quot;&gt;&lt;i class=&quot;fa-solid
+fa-rotate-right&quot;&gt;&lt;/i&gt; Thử Lại&lt;/button&gt;&lt;button
+class=&quot;button secondary&quot;
+onclick=&quot;showTab('creator')&quot;&gt;&lt;i class=&quot;fa-solid
+fa-house&quot;&gt;&lt;/i&gt; Về Trang Chủ&lt;/button&gt;&lt;/div&gt;&lt;div
+class=&quot;review-section&quot;&gt;&lt;h3&gt;&lt;i class=&quot;fa-solid
+fa-magnifying-glass&quot;&gt;&lt;/i&gt; Xem Lại Bài Làm&lt;/h3&gt;&lt;div
+class=&quot;review-filters button-group&quot;&gt;&lt;button class=&quot;button
+active&quot; onclick=&quot;filterReview('all',this)&quot;&gt;Tất cả&lt;/button&gt;&lt;button
+class=&quot;button&quot; onclick=&quot;filterReview('correct',this)&quot;&gt;Chỉ
+câu đúng&lt;/button&gt;&lt;button class=&quot;button&quot;
+onclick=&quot;filterReview('incorrect',this)&quot;&gt;Chỉ câu
+sai&lt;/button&gt;&lt;/div&gt;&lt;div
+id=&quot;review-list&quot;&gt;${reviewHtml}&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;`;<br>
+   animateScore(document.getElementById('finalScore'), userScore, totalScore);<br>
+   document.getElementById('quiz').scrollTop = 0;<br>
+}<br>
+function filterReview(filter, btnElement) {
+document.querySelectorAll('.review-filters .button').forEach(btn =&gt;
+btn.classList.remove('active')); btnElement.classList.add('active'); const
+questions = document.querySelectorAll('#review-list .review-question');
+questions.forEach(q =&gt; { q.classList.remove('hidden'); if (filter === 'all')
+return; if (!q.classList.contains(filter)) { q.classList.add('hidden'); } }); }<br>
+function resetQuiz() { if (appState.currentQuizData) { appState.userAnswers =
+{}; initializeQuiz(); } }<br>
+<br>
+// --- HISTORY MANAGEMENT ---<br>
+function loadHistory() { const historyJson =
+localStorage.getItem('quizHistory'); if (historyJson) { appState.quizHistory =
+JSON.parse(historyJson); } }<br>
+function saveHistory(resultData) { appState.quizHistory.unshift(resultData); if
+(appState.quizHistory.length &gt; 20) { appState.quizHistory.pop(); }
+localStorage.setItem('quizHistory', JSON.stringify(appState.quizHistory)); }<br>
+function clearHistory() { appState.quizHistory = [];
+localStorage.removeItem('quizHistory'); renderHistory(); }<br>
+function renderHistory(searchTerm = '') { const historyListEl =
+document.getElementById('historyList'); const lowerCaseSearchTerm =
+searchTerm.toLowerCase(); const filteredHistory =
+appState.quizHistory.filter(item =&gt;
+item.quizData.title.toLowerCase().includes(lowerCaseSearchTerm) ); if
+(filteredHistory.length === 0) { historyListEl.innerHTML = `&lt;p
+style=&quot;text-align: center; opacity: 0.7;&quot;&gt;Không tìm thấy kết quả
+nào.&lt;/p&gt;`; return; } historyListEl.innerHTML = filteredHistory.map((item,
+index) =&gt; { const originalIndex = appState.quizHistory.indexOf(item); const
+date = new Date(item.timestamp); const percentage = item.totalScore &gt; 0 ?
+Math.round((item.userScore / item.totalScore) * 100) : 0; return ` &lt;div
+class=&quot;history-item&quot;&gt; &lt;div class=&quot;history-info&quot;&gt;
+&lt;h4&gt;${item.quizData.title}&lt;/h4&gt;
+&lt;p&gt;${date.toLocaleString('vi-VN')}&lt;/p&gt; &lt;/div&gt; &lt;div
+class=&quot;history-score&quot;&gt;${item.userScore}/${item.totalScore}
+(${percentage}%)&lt;/div&gt; &lt;button class=&quot;button&quot;
+onclick=&quot;viewHistoryItem(${originalIndex})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-eye&quot;&gt;&lt;/i&gt; Xem lại&lt;/button&gt;
+&lt;/div&gt; `; }).join(''); }<br>
+function viewHistoryItem(index) { const historyItem =
+appState.quizHistory[index]; if (historyItem) { renderResultsAndReview(historyItem);
+showTab('quiz'); } }<br>
+<br>
+// --- QUIZ LIBRARY MANAGEMENT ---<br>
+function loadSavedQuizzes() { const quizzesJson =
+localStorage.getItem('savedQuizzes'); if (quizzesJson) { appState.savedQuizzes
+= JSON.parse(quizzesJson); } }<br>
+function saveQuizToLibrary() { if (!appState.creatorData.title.trim()) {
+showModal('modal', 'Lỗi', 'Vui lòng nhập tiêu đề cho đề thi trước khi lưu.', ()
+=&gt; {}); return; } if (appState.creatorData.questions.length === 0) {
+showModal('modal', 'Lỗi', 'Không thể lưu một đề thi rỗng.', () =&gt; {});
+return; } const existingIndex = appState.savedQuizzes.findIndex(q =&gt; q.id
+=== appState.creatorData.id); if (existingIndex &gt; -1) {
+appState.savedQuizzes[existingIndex] =
+JSON.parse(JSON.stringify(appState.creatorData)); } else { appState.savedQuizzes.unshift(JSON.parse(JSON.stringify(appState.creatorData)));
+} localStorage.setItem('savedQuizzes', JSON.stringify(appState.savedQuizzes));
+appState.hasUnsavedChanges = false; showStatus('creatorStatus', '✅ Đã lưu đề
+thi vào thư viện!', 'success'); unlockAchievement('CREATOR'); if
+(appState.savedQuizzes.length &gt;= 5) { unlockAchievement('LIBRARIAN'); } }<br>
+function showQuizLibrary() { const listEl =
+document.getElementById('quiz-library-list'); if (appState.savedQuizzes.length
+=== 0) { listEl.innerHTML = `&lt;p style=&quot;text-align: center; opacity:
+0.7;&quot;&gt;Thư viện của bạn trống.&lt;/p&gt;`; } else { listEl.innerHTML =
+appState.savedQuizzes.map((quiz, index) =&gt; ` &lt;div
+class=&quot;quiz-library-item&quot;&gt; &lt;span&gt;${quiz.title}
+(${quiz.questions.length} câu)&lt;/span&gt; &lt;div class=&quot;button-group&quot;
+style=&quot;margin-top: 0;&quot;&gt; &lt;button class=&quot;button&quot;
+title=&quot;Tải&quot;
+onclick=&quot;loadQuizFromLibrary(${index})&quot;&gt;&lt;i class=&quot;fa-solid
+fa-download&quot;&gt;&lt;/i&gt;&lt;/button&gt; &lt;button class=&quot;button
+danger&quot; title=&quot;Xóa&quot;
+onclick=&quot;deleteQuizFromLibrary(${index})&quot;&gt;&lt;i
+class=&quot;fa-solid fa-trash&quot;&gt;&lt;/i&gt;&lt;/button&gt; &lt;/div&gt;
+&lt;/div&gt; `).join(''); } showModal('quizLibraryModal'); }<br>
+function loadQuizFromLibrary(index) { const quizToLoad =
+appState.savedQuizzes[index]; if (quizToLoad) { appState.creatorData =
+JSON.parse(JSON.stringify(quizToLoad)); renderCreatorUI();
+hideModal('quizLibraryModal'); showStatus('creatorStatus', `✅ Đã tải đề thi
+&quot;${quizToLoad.title}&quot;!`, 'success'); } }<br>
+function deleteQuizFromLibrary(index) { const quizToDelete =
+appState.savedQuizzes[index]; showModal('modal', 'Xác nhận xóa', `Bạn có chắc
+muốn xóa đề thi &quot;${quizToDelete.title}&quot; khỏi thư viện?`, () =&gt; {
+appState.savedQuizzes.splice(index, 1); localStorage.setItem('savedQuizzes',
+JSON.stringify(appState.savedQuizzes)); showQuizLibrary(); }); }<br>
+<br>
+// --- AUTO-SAVE PROGRESS ---<br>
+function saveQuizProgress() { if (!appState.currentQuizData) return; const
+progress = { quizTitle: appState.currentQuizData.title, userAnswers:
+appState.userAnswers, timeLeft: appState.timeLeft, currentQuestionIndex:
+appState.currentQuestionIndex, shuffledQuestions: appState.shuffledQuestions,
+shuffledOptions: appState.shuffledOptions, startTime: appState.quizStartTime };
+sessionStorage.setItem('quizProgress', JSON.stringify(progress)); }<br>
+function loadQuizProgress() { const savedProgress = JSON.parse(sessionStorage.getItem('quizProgress'));
+if (!savedProgress || !appState.currentQuizData || savedProgress.quizTitle !==
+appState.currentQuizData.title) { startNewQuiz(); return; }
+appState.userAnswers = savedProgress.userAnswers; appState.timeLeft =
+savedProgress.timeLeft; appState.currentQuestionIndex =
+savedProgress.currentQuestionIndex; appState.shuffledQuestions =
+savedProgress.shuffledQuestions; appState.shuffledOptions =
+savedProgress.shuffledOptions; appState.quizStartTime =
+savedProgress.startTime; appState.isPaused = false; renderQuizUI(); if
+(appState.currentQuizData.config.timeLimit &gt; 0) {
+startTimer(appState.timeLeft); } }<br>
+function clearQuizProgress() { sessionStorage.removeItem('quizProgress'); }<br>
+&lt;/script&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+<br>
+</span></p>
+
+</div>
+
+</body>
+
+</html>
